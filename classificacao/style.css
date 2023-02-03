@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #3a3a3a;
+}
+
+body {
+  width: 100vw;
+  background-color: #f4f4f4;
+}
+
+/* ---------------------header----------------------- */
+
+header {
+  display: flex;
+  align-items: center;
+
+  padding: 15px;
+}
+
+header img {
+  width: 200px;
+}
+
+header h1 {
+  flex: 1;
+  text-align: center;
+}
+
+/* ---------------------body----------------------- */
+
+#dataList {
+  width: 100%;
+  margin-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#dataList>div {
+  margin-bottom: 50px;
+}
+
+/* ---------------------card----------------------- */
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 80vw;
+  height: 60px;
+
+  /* border: 1px solid #fa9022; */
+  border: 1px solid #004b9e;
+  border-radius: 8px;
+  background-color: inherit;
+
+  margin-bottom: -1px;
+}
+
+.card:hover {
+  background-color: #fa922298;
+  cursor: pointer;
+
+  height: 63px;
+}
+
+.card>div {
+  display: flex;
+}
+
+.card>div,
+.card>p,
+.card>a {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.usuario {
+  flex: 1;
+}
+
+.setor_container {
+  flex: 1;
+}
+
+.texto {
+  flex: 3;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.status_container {
+  flex: 1;
+}
+
+.created_at {
+  flex: 1;
+}
+
+.status_container > div{
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.revisado{
+  border: 1px solid green;
+}
+
+.concluido{
+  border: 1px solid rgb(0, 89, 255);
+}
+
+.a_revisar{
+  border: 1px solid rgb(255, 94, 0);
+}
+
+
+/* ---------------------body----------------------- */
+
+/* .texto {
+  background-color: white;
+} */

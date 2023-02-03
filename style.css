@@ -1,0 +1,296 @@
+@font-face {
+  font-family: "Duru Sans";
+  src: url(./DuruSans-Regular.ttf);
+}
+
+
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Duru Sans';
+  font-size: 14px;
+  text-decoration: none;
+}
+
+a {
+  color: #54595f;
+}
+
+/* ----------------------body-------------------------- */
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  width: 100vw;
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  background-color: #F4F4F4;
+}
+
+.body_row_content {
+  display: flex;
+  flex: 1;
+}
+
+/* ----------------------sidebar--------------------------  */
+
+.side_bar {
+  width: 17vw;
+
+  /* border-right: 1px solid black; */
+  box-shadow: -5px 0 15px black;
+}
+
+.logo_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo_container img {
+  width: 95%;
+}
+
+/* ----------------------issue button--------------------------  */
+
+.issue_button_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 90%;
+
+  margin-left: 5%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 15px;
+
+  border-radius: 25px;
+
+  background-color: #ff5544;
+
+  box-shadow: 0 0 15px gray;
+}
+
+.issue_button_container a {
+  /* flex: 1; */
+  text-align: center;
+  color: white;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  /* font-size: 18px; */
+}
+
+.issue_button_container i {
+  font-size: 30px;
+  color: white;
+  margin-right: 10px;
+}
+
+.issue_icon::before {
+  content: '\f590';
+}
+
+/* ----------------------issue button :hover--------------------------  */
+
+.issue_button_container:hover {
+  background-color: white;
+}
+
+.issue_button_container:hover a {
+  color: #ff5544;
+}
+
+.issue_button_container:hover i {
+  color: #ff5544;
+}
+
+/* ----------------------icons color navbar--------------------------  */
+
+.fa-building {
+  color: #8f6ee5;
+}
+
+.fa-globe {
+  color: #6bbbe0;
+}
+
+.fa-book-reader {
+  color: #d1628e;
+}
+
+.fa-clipboard-check {
+  color: #23a455;
+}
+
+.fa-clipboard-list {
+  color: #23a4a4;
+}
+
+.fa-address-book {
+  color: #024ea2;
+}
+
+.fa-birthday-cake {
+  color: #e5021c;
+}
+
+.fa-exclamation-circle {
+  color: #842de99e;
+}
+
+.fa-hands-helping {
+  color: #f2ca02;
+}
+
+/* ----------------------buttons navbar--------------------------  */
+
+.buttons_nav img {
+  width: 20px;
+}
+
+.button_container {
+  margin-bottom: 20px;
+}
+
+.button_container>div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+
+  width: fit-content;
+}
+
+.button_container i {
+  width: 25px;
+}
+
+/* ----------------------buttons navbar :hover--------------------------  */
+
+.button_container>div:hover {
+  cursor: pointer;
+}
+
+.button_container>div:hover i {
+  color: #f8931e;
+}
+
+.button_container>div:hover a {
+  color: #f8931e;
+}
+
+/* ----------------------current page button--------------------------  */
+
+.current_page_button_container>div {
+  width: 80%;
+  border-radius: 0 25px 25px 0;
+
+  /* margin-left: 10px;
+  padding-left: 0; */
+
+  background-color: #54595f;
+}
+
+.current_page_button_container a {
+  color: white;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ----------------------current page button :hover--------------------------  */
+
+.current_page_button_container>div:hover {
+  cursor: unset;
+}
+
+.current_page_button_container>div:hover i {
+  color: unset;
+}
+
+.current_page_button_container>div:hover a {
+  color: white;
+}
+
+/* ----------------------main-------------------------- */
+
+main {
+  width: 83%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 300px;
+  width: 100%;
+
+  /* position: absolute; */
+
+  background-image: url('./public/images/banner.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.banner h1 {
+  color: white;
+  font-size: 24px;
+}
+
+/* ----------------------form header-------------------------- */
+
+.form_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 50px;
+
+  /* border: 1px solid black; */
+  border-radius: 15px 15px 0 0;
+  padding: 15px;
+
+  background-color: #344e91;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.418);
+
+
+  width: 70%;
+}
+
+.form_header h3 {
+  font-size: 18px;
+  color: white;
+}
+
+/* ----------------------form-------------------------- */
+
+/* ----------------------footer-------------------------- */
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  height: 8vh;
+
+  background-color: #54595f;
+}
+
+footer p {
+  color: white;
+}
