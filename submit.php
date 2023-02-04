@@ -66,6 +66,8 @@ if ($_FILES['arquivo']['error'] === 0) {
             Usuario, Textorequisicao, Createdat, Setor, Imagem, Status)
             VALUES ('$usuario', '$texto', '{$now->format('Y-d-m H:i:s')}', '$setor', '$idImagem', 'A revisar');");
     }
+    lastPage();
+
 }else if ($_FILES['arquivo']['error'] === 4) {
     $setor = $_POST['setor'];
     $texto = $_POST['texto'];
@@ -77,6 +79,8 @@ if ($_FILES['arquivo']['error'] === 0) {
     $insertRequisicao = queryData("INSERT INTO Trequisicao(
         Usuario, Textorequisicao, Createdat, Setor, Status)
         VALUES ('$usuario', '$texto', '{$now->format('Y-d-m H:i:s')}', '$setor', 'A revisar');");
+
+    lastPage();
         
 }else if ($_FILES['arquivo']['error'] === 1 || $_FILES['arquivo']['error'] === 2) {
     echo 'O arquivo inserido excede o tamanho máximo de arquivo permitido';
@@ -94,9 +98,9 @@ if ($_FILES['arquivo']['error'] === 0) {
 
 
 // if success redirect to last page
-function lastPage($url)
+function lastPage()
 {
-    header('Location: ' . $url);
+    header('Location: /');
 }
 
 // lastPage("http://localhost:8080");

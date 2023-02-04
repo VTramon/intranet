@@ -1,4 +1,3 @@
-// var inputElement = document.getElementById('input')
 
 input.addEventListener('focusout', () => {
   setTimeout(() => {
@@ -33,14 +32,32 @@ input.oninput = function () {
 }
 
 var currentFocus = -1
+var maxFocus = currentFocus
+var minFocus = 0
+
+datalist.onscroll = function(){
+  console.log(datalist.scrollTop)
+}
 
 input.onkeydown = function (e) {
   if (e.keyCode == 40) {
     currentFocus++
+    if(maxFocus<currentFocus) maxFocus = currentFocus
+    if(currentFocus-minFocus>3) {
+      minFocus += 1
+      datalist.scrollBy(0, 32)
+    }
     addActive(datalist.options)
+
   } else if (e.keyCode == 38) {
     currentFocus--
+    if(minFocus>currentFocus) minFocus = currentFocus
+    if(maxFocus-currentFocus>3) {
+      maxFocus -= 1
+      datalist.scrollBy(0, -32)
+    }
     addActive(datalist.options)
+
   } else if (e.keyCode == 13) {
     e.preventDefault()
     if (currentFocus > -1) {
@@ -53,8 +70,18 @@ input.onkeydown = function (e) {
 function addActive(x) {
   if (!x) return false
   removeActive(x)
-  if (currentFocus >= x.length) currentFocus = 0
-  if (currentFocus < 0) currentFocus = x.length - 1
+  if (currentFocus >= x.length) {
+    currentFocus = 0
+    minFocus = 0
+    maxFocus = 0
+    datalist.scrollTo(0,0)
+  }
+  if (currentFocus < 0) {
+    currentFocus = x.length - 1
+    minFocus = x.length - 1
+    maxFocus = x.length - 1
+    datalist.scrollTo(0,(x.length - 1)*32)
+  }
   x[currentFocus].classList.add('active')
 }
 
