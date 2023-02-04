@@ -108,6 +108,8 @@
 .image_container img {
   object-fit: contain;
   max-height: 500px;
+  box-shadow: 0 0 15px gray;
+  border-radius: 15px;
 }
 
 /* ---------------------main--------------------- */
@@ -161,6 +163,7 @@ section {
 /* ---------------------form--------------------- */
 
 form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -292,4 +295,14 @@ option:hover,
   background-color: rgba(173, 216, 230, 0.397);
   color: #F8931E;
   font-weight: bold;
+}
+
+
+/* ----------------edit_button---------------- */
+
+#edit_button{
+  position: absolute;
+
+  right: 0px;
+  top: 50%;
 }

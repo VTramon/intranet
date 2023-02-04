@@ -12,4 +12,4 @@ $now = new Datetime();
 $idAgrupamento = uniqid() . $now->format('d-m-Y');
 
 queryData("INSERT INTO Tagrupamento(Idagrupamento, Tipoagrupamento) values('$idAgrupamento', '$agrupamento')");
-queryData("UPDATE Trequisicao SET Textoconclusao='$conclusao', Agrupamento='$idAgrupamento' WHERE Idrequisicao='$idRequisicao'");
+queryData("UPDATE Trequisicao SET Textoconclusao='$conclusao', Agrupamento='$idAgrupamento', Status='Revisado', Updatedat='{$now->format('Y-m-d H:i:s')}' WHERE Idrequisicao='$idRequisicao'");

@@ -3,25 +3,36 @@
 require './connection.php';
 
 
+// queryData('DROP TABLE Trequisicao');
+// queryData('DROP TABLE Timagem');
+// queryData('DROP TABLE Tagrupamento');
+
 // queryData("CREATE TABLE Trequisicao(
 //     Idrequisicao INT NOT NULL IDENTITY(1,1), 
 //     Usuario VARCHAR(60) NOT NULL,
 //     Createdat DATETIME NOT NULL, 
-//     Updatedat DATETIME NOT NULL, 
-//     Completedat DATETIME NOT NULL, 
+//     Updatedat DATETIME, 
+//     Completedat DATETIME, 
 //     Setor VARCHAR(50) NOT NULL, 
 //     Status VARCHAR(20) NOT NULL, 
 //     Textorequisicao VARCHAR(MAX) NOT NULL, 
-//     Textoconclusao VARCHAR(MAX) NOT NULL,
-//     Imagem INT FOREIGN KEY REFERENCES Timagem(Idimagem),
-//     Agrupamento INT FOREIGN KEY REFERENCES Tagrupamento(Idagrupamento),
+//     Textoconclusao VARCHAR(MAX),
+//     Imagem VARCHAR(50) FOREIGN KEY REFERENCES Timagem(Idimagem),
+//     Agrupamento VARCHAR(50) FOREIGN KEY REFERENCES Tagrupamento(Idagrupamento),
 //     )") or die(print_r(sqlsrv_errors(), true));
 
-// queryData('CREATE TABLE Timagem(Idimagem INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+// queryData('CREATE TABLE Timagem(Idimagem VARCHAR(50) NOT NULL PRIMARY KEY,
 //     Dadoimagem VARCHAR(MAX) NOT NULL)');
 
-// queryData('CREATE TABLE Tagrupamento(Idagrupamento INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+// queryData('CREATE TABLE Tagrupamento(Idagrupamento VARCHAR(50) NOT NULL PRIMARY KEY,
 //     Tipoagrupamento VARCHAR(20) NOT NULL)');
+
+
+
+queryData("delete from Timagem");
+queryData("delete from Trequisicao");
+queryData("delete from Tagrupamento");
+
 
 
 // $query = queryData('select * from Timagem');
@@ -33,9 +44,6 @@ require './connection.php';
 // echo json_encode($data);
 
 
-// queryData('DROP TABLE Trequisicao');
-// queryData('DROP TABLE Timagem');
-// queryData('DROP TABLE Tagrupamento');
 
 // queryData('ALTER TABLE IF EXISTS Trequisicao
 //     ADD CONSTRAINT Tagrupamento FOREIGN KEY (Agrupamento)

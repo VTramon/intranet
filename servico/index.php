@@ -12,7 +12,7 @@ $editable = 'false';
 $fullUsername = shell_exec("wmic computersystem get username");
 // $test = mb_split('\\\\', $fullUsername);
 $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
-$usernameRegex = preg_match('(vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes)', $username);
+$usernameRegex = preg_match('(vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes)', $username);
 
 
 if ($usernameRegex) {
@@ -21,7 +21,7 @@ if ($usernameRegex) {
 
 $data = getRequisicaoById($idRequisicao)[0];
 
-
+// echo json_encode($data);
 
 date_timezone_set($data['Createdat'], timezone_open('America/Sao_Paulo'));
 
@@ -58,7 +58,7 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
 
       <div class="image_container">
         <?php
-        echo imgTemplate('/servicos/image/index.php?id=' . $data['Imagem']);
+        echo imgTemplate('/image/index.php?id=' . $data['Imagem']);
         ?>
 
         <!-- <a id="prev" class="prev" onclick="plusSlides(1)">&#10094;</a>
@@ -86,6 +86,8 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
           <p class="data"><?php echo $date ?></p>
         </div>
       </div>
+      <form action='./submit.php' method='post'>
+
 
       <?php
       if ($data['Agrupamento'] == null && $editable == 'true') {
@@ -95,20 +97,26 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
         // echo formTemplate($idRequisicao, false);
       }
       if ($data['Agrupamento'] != null && $editable == 'true') {
-        echo formTemplate($idRequisicao, false, $data['Agrupamento'], $data['Textoconclusao']);
+        $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
+        
+        echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao'], $editable);
       }
       if ($data['Agrupamento'] != null && $editable == 'false') {
-        echo formTemplate($idRequisicao, false, $data['Agrupamento'], $data['Textoconclusao']);
+        $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
+        
+        echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao']);
         // echo formTemplate($idRequisicao, false);
       }
       ?>
 
 
+      </form>
     </section>
   </main>
 
   <footer></footer>
   <script src="../form.js"></script>
+  <script src="./script.js"></script>
 
 </body>
 

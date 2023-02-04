@@ -59,16 +59,14 @@ if ($_FILES['arquivo']['error'] === 0) {
     $usuario = $GLOBALS['username'];
     // $usuario = 'vitor.lemos';
     $now = new DateTime();
-    $idImagem = handleImage($_FILES['arquivo'], $now->format('d-m-Y/H:i:s'));
+    $idImagem = handleImage($_FILES['arquivo'], $now->format('d-m-Y'));
     // echo $now->format('Y-m-d H:i:s');
     if ($idImagem > 0 && $idImagem != false) {
         $insertRequisicao = queryData("INSERT INTO Trequisicao(
             Usuario, Textorequisicao, Createdat, Setor, Imagem, Status)
             VALUES ('$usuario', '$texto', '{$now->format('Y-d-m H:i:s')}', '$setor', '$idImagem', 'A revisar');");
     }
-}
-
-if ($_FILES['arquivo']['error'] === 4) {
+}else if ($_FILES['arquivo']['error'] === 4) {
     $setor = $_POST['setor'];
     $texto = $_POST['texto'];
     $usuario = $GLOBALS['username'];
@@ -79,7 +77,21 @@ if ($_FILES['arquivo']['error'] === 4) {
     $insertRequisicao = queryData("INSERT INTO Trequisicao(
         Usuario, Textorequisicao, Createdat, Setor, Status)
         VALUES ('$usuario', '$texto', '{$now->format('Y-d-m H:i:s')}', '$setor', 'A revisar');");
+        
+}else if ($_FILES['arquivo']['error'] === 1 || $_FILES['arquivo']['error'] === 2) {
+    echo 'O arquivo inserido excede o tamanho máximo de arquivo permitido';
+}else if ($_FILES['arquivo']['error'] === 3) {
+    echo 'Ocorreu um erro durante o upload da imagem, por favor tente novamente.';
+}else{
+    echo 'Ocorreu um erro durante o upload da imagem, por favor tente novamente.';
+    var_dump($_FILES['arquivo']);
 }
+
+
+
+
+
+
 
 // if success redirect to last page
 function lastPage($url)

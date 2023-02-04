@@ -114,7 +114,7 @@ function template($data, $editable)
   $statusSpan = handleStatusSpan($data['Status']);
   $setor = '  ' . $data['Setor'];
 
-  $html = "<a href='/servico/index.php?id={$data['Idrequisicao']}&editable=$editable'>
+  $html = "<a href='/servico/index.php?id={$data['Idrequisicao']}'>
       <li id='card-{$data['Idrequisicao']}' class='card'> 
         <p class='usuario'>{$data['Usuario']}</p>
         <div class='setor_container'>

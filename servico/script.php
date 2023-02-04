@@ -1,14 +1,17 @@
 <?php
 
-function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '')
+function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '', $editable = false)
 {
   $result = new DOMDocument('1.0', 'UTF-8');
 
   $result->encoding = 'UTF-8';
 
+  // if($isDisabled == true && $texto != ''){
+  //   return "<button id='edit_button'>Habilitar</button>";
+  // }
+
   $internalErrors = libxml_use_internal_errors(true);
-  $html = "<form action='./submit.php' method='post'>
-    <div class='input_container'>
+  $html = "<div class='input_container'>
       <label for='input'>Agrupamento</label>
       <input value='$agrupamento' autocomplete='off' role='combobox' list='' id='input' name='input' " . isDisabled($isDisabled) . " />
 
@@ -27,11 +30,15 @@ function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '')
 
     <input type='hidden' name='id' value='$id'>
 
-    <button type='submit'" . isDisabled($isDisabled) . ">Enviar</button>
-  </form>";
+    <button id='enviar' type='submit'" . isDisabled($isDisabled) . ">Enviar</button>";
+    // . $isDisabled == true && $texto != '' ? "<button id='edit_button'>Habilitar</button>" : ""
 
 
-  $result->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+    if($editable == true && $texto != ''){
+      $result->loadHTML('<?xml encoding="utf-8" ?>' . $html . "<button id='edit_button'>Habilitar</button>");
+    }else{
+      $result->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+    }
 
   libxml_use_internal_errors($internalErrors);
 
