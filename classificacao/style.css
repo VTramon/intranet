@@ -56,7 +56,6 @@ header h1 {
   width: 80vw;
   height: 60px;
 
-  /* border: 1px solid #fa9022; */
   border: 1px solid #004b9e;
   border-radius: 8px;
   background-color: inherit;
@@ -68,7 +67,7 @@ header h1 {
   background-color: #fa922298;
   cursor: pointer;
 
-  height: 63px;
+  width: calc(80vw + 5px);
 }
 
 .card>div {

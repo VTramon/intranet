@@ -58,7 +58,10 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
 
       <div class="image_container">
         <?php
-        echo imgTemplate('/image/index.php?id=' . $data['Imagem']);
+        if($data['Imagem']){
+
+          echo imgTemplate('/image/index.php?id=' . $data['Imagem']);
+        }
         ?>
 
         <!-- <a id="prev" class="prev" onclick="plusSlides(1)">&#10094;</a>
@@ -81,10 +84,21 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
           <p class="texto"><?php echo $data['Textorequisicao'] ?></p>
         </div>
 
-        <div class="data_container data_container">
+        <div class="data_container created_container">
           <p class="data_label">Criado:</p>
           <p class="data"><?php echo $date ?></p>
         </div>
+        <?php
+          if ($data['Updatedat'] != null){
+            $html = new DOMDocument();
+            $html->loadHTML("
+            <div class='data_container updated_container'>
+            <p class='data_label'>Atualizado:</p>
+            <p class='data'> {$data['Updatedat']->format('d/m/Y H:i:s')} </p>
+            </div>");
+            echo $html->saveHTML();
+          }
+        ?>
       </div>
       <form action='./submit.php' method='post'>
 

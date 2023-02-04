@@ -49,7 +49,7 @@ function handleStatusClass($status)
   if ($status == 'A revisar') {
     return 'a_revisar';
   }
-  return $status;
+  return lcfirst($status);
 }
 
 function handleStatusSpan($status)
@@ -126,7 +126,7 @@ function template($data, $editable)
             <p class='isComplete'>$statusSpan</p>
           </div>
         </div>
-        <p class='created_at'>$time</p>
+        <p class='created_at'>Requisitado a $time</p>
       </li>
     </a>";
 
