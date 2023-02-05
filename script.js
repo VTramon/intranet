@@ -5,7 +5,89 @@
 // }
 
 import { handleButton } from './components/button.js'
+import { handleNavButton } from './components/navButton.js'
 
+const intranet = 'http://intranet/'
+const sidebarIcons=[
+  {
+    icon: 'fas fa-home',
+    iconColor: 'black',
+    value: 'Home',
+    link: intranet + 'sobre-a-tecal/',
+    current: null
+  },
+  {
+    icon: 'fas fa-building',
+    iconColor: '#8f6ee5',
+    value: 'Sobre a Tecal',
+    link: intranet + 'politicas-2/',
+    current: null
+  },
+  {
+    icon: 'fas fa-globe',
+    iconColor: '#6bbbe0',
+    value: 'Políticas',
+    link: intranet + 'procedimentos_01/',
+    current: null
+  },
+  {
+    icon: 'fas fa-book-reader',
+    iconColor: '#d1628e',
+    value: 'Procedimentos',
+    link: intranet + 'manuais/',
+    current: null
+  },
+  {
+    icon: 'fas fa-clipboard-check',
+    iconColor: '#23a455',
+    value: 'Manuais',
+    link: intranet + 'formularios/',
+    current: null
+  },
+  {
+    icon: 'fas fa-clipboard-list',
+    iconColor: '#23a4a4',
+    value: 'Formulários',
+    link: intranet + 'contatos/',
+    current: null
+  },
+  {
+    icon: 'far fa-address-book',
+    iconColor: '#024ea2',
+    value: 'Contatos',
+    link: intranet + 'aniversarios/',
+    current: null
+  },
+  {
+    icon: 'fas fa-birthday-cake',
+    iconColor: '#e5021c',
+    value: 'Aniversários',
+    link: intranet + 'leis-normas/',
+    current: null
+  },
+  {
+    icon: 'fas fa-exclamation-circle',
+    iconColor: '#842de99e',
+    value: 'Leis & Normas',
+    link: intranet + 'convenios/',
+    current: null
+  },
+  {
+    icon: 'fas fa-hands-helping',
+    iconColor: '#f2ca02',
+    value: 'Convênios & Parcerias',
+    link: intranet + '_blank',
+    current: null
+  },
+  {
+    icon: 'fab fa-servicestack',
+    iconColor: null,
+    value: 'Solicitação de Serviço',
+    link: intranet+'',
+    current: true
+  },
+
+]
 
 
 
@@ -25,7 +107,13 @@ const setores = [
 
 document.getElementById('form').appendChild(handleButton('submit_button', 'Enviar', 'submit'))
 document.getElementById('logo_container').insertAdjacentElement('afterend', handleButton('issue_button_container', 'Críticas & Sugestões', 'issue'))
+var navbar = document.getElementById('buttons_nav')
 
+for (var i = 0; i < sidebarIcons.length; i++) {
+  // sidebarIcons.array.map((data) => {
+    navbar.insertAdjacentElement('beforeend', handleNavButton(sidebarIcons[i].value, sidebarIcons[i].icon, sidebarIcons[i].iconColor, sidebarIcons[i].current, sidebarIcons[i].link))
+  // });
+}
 
 
 document

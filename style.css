@@ -14,9 +14,9 @@
   text-decoration: none;
 }
 
-a {
+/* a {
   color: #54595f;
-}
+} */
 
 /* ----------------------body-------------------------- */
 
@@ -112,7 +112,7 @@ body {
 
 /* ----------------------icons color navbar--------------------------  */
 
-.fa-building {
+/* .fa-building {
   color: #8f6ee5;
 }
 
@@ -146,11 +146,11 @@ body {
 
 .fa-hands-helping {
   color: #f2ca02;
-}
+} */
 
 /* ----------------------buttons navbar--------------------------  */
 
-.buttons_nav img {
+/* .buttons_nav img {
   width: 20px;
 }
 
@@ -169,11 +169,11 @@ body {
 
 .button_container i {
   width: 25px;
-}
+} */
 
 /* ----------------------buttons navbar :hover--------------------------  */
 
-.button_container>div:hover {
+/* .button_container>div:hover {
   cursor: pointer;
 }
 
@@ -183,29 +183,27 @@ body {
 
 .button_container>div:hover a {
   color: #f8931e;
-}
+} */
 
 /* ----------------------current page button--------------------------  */
 
-.current_page_button_container>div {
+/* .current_page_button_container>div {
   width: 80%;
   border-radius: 0 25px 25px 0;
 
-  /* margin-left: 10px;
-  padding-left: 0; */
 
   background-color: #54595f;
-}
+} */
 
-.current_page_button_container a {
+/* .current_page_button_container a {
   color: white;
   cursor: default;
   pointer-events: none;
-}
+} */
 
 /* ----------------------current page button :hover--------------------------  */
 
-.current_page_button_container>div:hover {
+/* .current_page_button_container>div:hover {
   cursor: unset;
 }
 
@@ -215,7 +213,7 @@ body {
 
 .current_page_button_container>div:hover a {
   color: white;
-}
+} */
 
 /* ----------------------main-------------------------- */
 

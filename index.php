@@ -44,8 +44,8 @@
         Críticas & Sugestões
       </div> -->
 
-      <nav class="buttons_nav">
-        <div class="button_container">
+      <nav id="buttons_nav">
+        <!-- <div class="button_container">
           <div>
             <i aria-hidden="true" class="fas fa-home"></i>
 
@@ -130,7 +130,7 @@
 
             <a disabled href="_blank">Solicitação de Serviço</a>
           </div>
-        </div>
+        </div> -->
       </nav>
     </nav>
 
