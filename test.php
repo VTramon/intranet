@@ -29,9 +29,9 @@ require './connection.php';
 
 
 
-queryData("delete from Timagem");
-queryData("delete from Trequisicao");
-queryData("delete from Tagrupamento");
+// queryData("delete from Timagem");
+// queryData("delete from Trequisicao");
+// queryData("delete from Tagrupamento");
 
 
 

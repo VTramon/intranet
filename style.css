@@ -58,7 +58,7 @@ body {
 
 /* ----------------------issue button--------------------------  */
 
-.issue_button_container {
+/* .issue_button_container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,41 +75,40 @@ body {
   background-color: #ff5544;
 
   box-shadow: 0 0 15px gray;
-}
+} */
 
-.issue_button_container a {
-  /* flex: 1; */
+/* .issue_button_container {
   text-align: center;
   color: white;
   font-family: Roboto;
   font-size: 16px;
   font-weight: normal;
-  /* font-size: 18px; */
-}
+} */
 
-.issue_button_container i {
+/* .issue_button_container i {
   font-size: 30px;
   color: white;
   margin-right: 10px;
-}
+} */
 
-.issue_icon::before {
+/* .issue_icon::before {
   content: '\f590';
-}
+} */
 
 /* ----------------------issue button :hover--------------------------  */
 
-.issue_button_container:hover {
+/* .issue_button_container:hover {
   background-color: white;
-}
-
-.issue_button_container:hover a {
   color: #ff5544;
-}
+} */
 
-.issue_button_container:hover i {
+/* .issue_button_container:hover p {
   color: #ff5544;
-}
+} */
+
+/* .issue_button_container:hover i {
+  color: #ff5544;
+} */
 
 /* ----------------------icons color navbar--------------------------  */
 

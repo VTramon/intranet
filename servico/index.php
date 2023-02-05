@@ -12,7 +12,7 @@ $editable = 'false';
 $fullUsername = shell_exec("wmic computersystem get username");
 // $test = mb_split('\\\\', $fullUsername);
 $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
-$usernameRegex = preg_match('(vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes)', $username);
+$usernameRegex = preg_match('(vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes)', $username);
 
 
 if ($usernameRegex) {
@@ -51,7 +51,18 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
 </head>
 
 <body>
-  <header></header>
+  <header>
+    <img src="../public/images/tecal.png" alt="">
+      <form id='conclude_form' action="./conclude.php" method="post">
+        <?php
+          if($usernameRegex && ($data['Status'] == 'A revisar' || $data['Status'] == 'Revisado')){
+            $html = new DOMDocument();
+            $html->loadHTML("<input id='conclude_hidden_id_input' type='hidden' name='id' value='$idRequisicao'>");
+            echo $html->saveHTML();
+          }
+        ?>
+      </form>
+  </header>
 
   <main>
     <section>
@@ -79,15 +90,11 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
           <p class="setor"><?php echo $data['Setor'] ?></p>
         </div>
 
-        <div class="data_container texto_container">
-          <p class="texto_label">Texto:</p>
-          <p class="texto"><?php echo $data['Textorequisicao'] ?></p>
-        </div>
-
         <div class="data_container created_container">
           <p class="data_label">Criado:</p>
           <p class="data"><?php echo $date ?></p>
         </div>
+
         <?php
           if ($data['Updatedat'] != null){
             $html = new DOMDocument();
@@ -98,17 +105,32 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
             </div>");
             echo $html->saveHTML();
           }
+          
+          if ($data['Completedat'] != null){
+            $html = new DOMDocument();
+            $html->loadHTML("
+            <div class='data_container updated_container'>
+            <p class='data_label'>Concluido:</p>
+            <p class='data'> {$data['Completedat']->format('d/m/Y H:i:s')} </p>
+            </div>");
+            echo $html->saveHTML();
+          }
         ?>
+        
+        <div class="data_container texto_container">
+          <p class="texto_label">Texto:</p>
+          <p class="texto"><?php echo $data['Textorequisicao'] ?></p>
+        </div>
+
       </div>
-      <form action='./submit.php' method='post'>
-
-
+      
+      <form id='update_form' action='./submit.php' method='post'>
       <?php
       if ($data['Agrupamento'] == null && $editable == 'true') {
         echo formTemplate($idRequisicao, true);
       }
       if ($data['Agrupamento'] == null && $editable == 'false') {
-        // echo formTemplate($idRequisicao, false);
+        // Retorna nada
       }
       if ($data['Agrupamento'] != null && $editable == 'true') {
         $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
@@ -119,18 +141,15 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
         $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
         
         echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao']);
-        // echo formTemplate($idRequisicao, false);
       }
       ?>
-
-
       </form>
     </section>
   </main>
 
   <footer></footer>
-  <script src="../form.js"></script>
-  <script src="./script.js"></script>
+  
+  <script type="module" src="./script.js"></script>
 
 </body>
 

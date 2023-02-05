@@ -1,8 +1,13 @@
-var formResult = {
-  setor: null,
-  texto: null,
-  arquivos: [],
-}
+// var formResult = {
+//   setor: null,
+//   texto: null,
+//   arquivos: [],
+// }
+
+import { handleButton } from './components/button.js'
+
+
+
 
 const setores = [
   'Administração',
@@ -17,6 +22,10 @@ const setores = [
   'Engenharia',
   'SESMET',
 ]
+
+document.getElementById('form').appendChild(handleButton('submit_button', 'Enviar', 'submit'))
+document.getElementById('logo_container').insertAdjacentElement('afterend', handleButton('issue_button_container', 'Críticas & Sugestões', 'issue'))
+
 
 
 document
@@ -52,3 +61,4 @@ document
       document.getElementById("form").submit()
     }
   })
+

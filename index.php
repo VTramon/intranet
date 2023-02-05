@@ -33,15 +33,16 @@
 <body>
   <div class="body_row_content">
     <nav class="side_bar">
-      <div class="logo_container">
+      <div id='logo_container' class="logo_container">
         <img src="./public/images/tecal.png" alt="Logo Tecal" />
       </div>
 
-      <div class="issue_button_container">
+      <!-- <div class="issue_button_container">
         <i class="fa-solid fa-headset"></i>
 
-        <a class="issue_button">Críticas & Sugestões</a>
-      </div>
+        <p class="issue_button">Críticas & Sugestões</p>
+        Críticas & Sugestões
+      </div> -->
 
       <nav class="buttons_nav">
         <div class="button_container">
@@ -173,7 +174,7 @@
           <input type="file" name="arquivo" id="arquivo" />
         </div>
 
-        <button id="submit_button">Enviar</button>
+        <!-- <button id="submit_button">Enviar</button> -->
       </form>
     </main>
   </div>
@@ -195,7 +196,8 @@
       </p>
     </div>
   </footer>
-  <script src="./script.js"></script>
+  
+  <script type="module" src="./script.js"></script>
   <script src="./form.js"></script>
 </body>
 
