@@ -5,6 +5,8 @@ export function handleButton(id, value, type, disabled){
     button.id = id
     var style = button.style
 
+
+
     button.innerHTML = value
 
     button.disabled = disabled
@@ -18,6 +20,7 @@ export function handleButton(id, value, type, disabled){
         style.transition = 'ease-in-out 0.1s'
 
         button.onmouseover = function (){
+            style.cursor = 'pointer'
             style.color = '#344e91'
             style.backgroundColor = ' #F8931E'
             style.transform = 'scale(1.3)'
@@ -27,6 +30,7 @@ export function handleButton(id, value, type, disabled){
         }
 
         button.onmouseleave = function (){
+            style.cursor = 'unset'
             style.color = 'unset'
             style.backgroundColor = 'transparent'
             style.transform = 'unset'
@@ -36,7 +40,15 @@ export function handleButton(id, value, type, disabled){
     }
 
     if(type === 'issue'){
+        var link = document.createElement('a')
         var icon = document.createElement('i')
+
+        button.insertAdjacentElement('afterbegin', icon)
+        link.insertAdjacentElement('afterbegin', button)
+
+        link.href = 'http://intranet/'
+
+
         icon.className = 'fa-solid fa-headset'
 
         icon.style.fontSize = '30px'
@@ -66,6 +78,7 @@ export function handleButton(id, value, type, disabled){
 
 
         button.onmouseover = function (){
+            style.cursor = 'pointer'
             style.color = '#ff5544'
             style.backgroundColor = 'white'
 
@@ -73,13 +86,15 @@ export function handleButton(id, value, type, disabled){
         }
 
         button.onmouseleave = function (){
+            style.cursor = 'unset'
             style.color = 'white'
             style.backgroundColor = '#ff5544'
 
             icon.style.color = 'white'
         }
 
-        button.insertAdjacentElement('afterbegin', icon)
+        return link
+
     }
 
     return button

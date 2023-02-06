@@ -100,7 +100,7 @@ date_default_timezone_set('America/Sao_Paulo');
 }
 
 
-function template($data, $editable)
+function template($data)
 {
   $result = new DOMDocument('1.0', 'UTF-8');
 
@@ -126,7 +126,7 @@ function template($data, $editable)
             <p class='isComplete'>$statusSpan</p>
           </div>
         </div>
-        <p class='created_at'>Requisitado a $time</p>
+        <p class='created_at'>$time atrás</p>
       </li>
     </a>";
 

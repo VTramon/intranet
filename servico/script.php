@@ -6,10 +6,6 @@ function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '', 
 
   $result->encoding = 'UTF-8';
 
-  // if($isDisabled == true && $texto != ''){
-  //   return "<button id='edit_button'>Habilitar</button>";
-  // }
-
   $internalErrors = libxml_use_internal_errors(true);
   $html = "<div class='input_container'>
       <label for='input'>Agrupamento</label>
@@ -44,6 +40,7 @@ function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '', 
 
   return $result->saveHTML();
 }
+
 
 
 function isDisabled($value)

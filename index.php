@@ -37,6 +37,7 @@
         <img src="./public/images/tecal.png" alt="Logo Tecal" />
       </div>
 
+
       <!-- <div class="issue_button_container">
         <i class="fa-solid fa-headset"></i>
 
@@ -198,7 +199,7 @@
   </footer>
   
   <script type="module" src="./script.js"></script>
-  <script src="./form.js"></script>
+  <!-- <script src="./form.js"></script> -->
 </body>
 
 </html>
