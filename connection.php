@@ -1,19 +1,14 @@
 <?php
-
-// $server = '192.168.7.7';
-$server = 'DESKTOP-DQHQ8D4';
-$user = 'INTRA';
-$password = 'estrela77';
-$DB = 'INTRANET';
+$env = parse_ini_file('.env');
 
 $connection = [
-    'Uid' => "$user",
-    'PWD' => "$password",
-    'Database' => "$DB"
+    'Uid' => $env['user'],
+    'PWD' => $env['password'],
+    'Database' => $env['DB']
 ];
 
 
-$connect = sqlsrv_connect($server, $connection) or die(print_r(sqlsrv_errors(), true));
+$connect = sqlsrv_connect($env['server'], $connection) or die(print_r(sqlsrv_errors(), true));
 
 function queryData($text)
 {
@@ -65,5 +60,3 @@ function getAgrupamentoById($id)
     // }
     return sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
 }
-
-
