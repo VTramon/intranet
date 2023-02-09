@@ -24,17 +24,15 @@ function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '', 
       <textarea type='text' name='texto' id='texto' " . isDisabled($isDisabled) . ">$texto</textarea>
     </div>
 
-    <input type='hidden' name='id' value='$id'>
+    <input id='hidden_id' type='hidden' name='id' value='$id'>";
 
-    <button id='enviar' type='submit'" . isDisabled($isDisabled) . ">Enviar</button>";
-    // . $isDisabled == true && $texto != '' ? "<button id='edit_button'>Habilitar</button>" : ""
+  // <button id='enviar' type='submit'" . isDisabled($isDisabled) . ">Enviar</button>";
 
-
-    if($editable == true && $texto != ''){
-      $result->loadHTML('<?xml encoding="utf-8" ?>' . $html . "<button id='edit_button'>Habilitar</button>");
-    }else{
-      $result->loadHTML('<?xml encoding="utf-8" ?>' . $html);
-    }
+  if ($editable == true && $texto != '') {
+    $result->loadHTML('<?xml encoding="utf-8" ?>' . $html . "<button id='edit_button'>Habilitar</button>");
+  } else {
+    $result->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+  }
 
   libxml_use_internal_errors($internalErrors);
 
@@ -61,9 +59,7 @@ function imgTemplate($image)
 
   $internalErrors = libxml_use_internal_errors(true);
   $html = "<img src='$image' alt='imagem da requisição'>";
-  // $html = "<img src='data:image/png;base64,$image' alt='imagem da requisição'>";
 
-  // $result->loadHTML($html);
   $result->loadHTML('<?xml encoding="utf-8" ?>' . $html);
 
   libxml_use_internal_errors($internalErrors);

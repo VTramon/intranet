@@ -1,6 +1,6 @@
 
 
-export function handleButton(id, value, type, disabled){
+export function handleButton(id, value, type, disabled) {
     var button = document.createElement('button')
     button.id = id
     var style = button.style
@@ -12,14 +12,14 @@ export function handleButton(id, value, type, disabled){
     button.disabled = disabled
 
 
-    if(type === 'submit'){
+    if (type === 'submit') {
         style.padding = '10px'
         style.border = '1px solid #F8931E'
         style.borderRadius = '8px'
         style.backgroundColor = 'transparent'
         style.transition = 'ease-in-out 0.1s'
 
-        button.onmouseover = function (){
+        button.onmouseover = function () {
             style.cursor = 'pointer'
             style.color = '#344e91'
             style.backgroundColor = ' #F8931E'
@@ -29,7 +29,7 @@ export function handleButton(id, value, type, disabled){
             style.transition = 'ease-in-out 0.1s'
         }
 
-        button.onmouseleave = function (){
+        button.onmouseleave = function () {
             style.cursor = 'unset'
             style.color = 'unset'
             style.backgroundColor = 'transparent'
@@ -39,14 +39,15 @@ export function handleButton(id, value, type, disabled){
         }
     }
 
-    if(type === 'issue'){
+    if (type === 'issue') {
         var link = document.createElement('a')
         var icon = document.createElement('i')
 
         button.insertAdjacentElement('afterbegin', icon)
         link.insertAdjacentElement('afterbegin', button)
 
-        link.href = 'http://intranet/'
+        link.href = 'https://docs.google.com/forms/d/e/1FAIpQLSeIJBtGEGRSv2AUsc4MOYSKpTD-xjrFAtFhic5M_PYPwA1qqw/viewform?usp=sf_link'
+        link.target = '_blank'
 
 
         icon.className = 'fa-solid fa-headset'
@@ -77,7 +78,7 @@ export function handleButton(id, value, type, disabled){
         style.boxShadow = '0 0 15px gray'
 
 
-        button.onmouseover = function (){
+        button.onmouseover = function () {
             style.cursor = 'pointer'
             style.color = '#ff5544'
             style.backgroundColor = 'white'
@@ -85,7 +86,7 @@ export function handleButton(id, value, type, disabled){
             icon.style.color = '#ff5544'
         }
 
-        button.onmouseleave = function (){
+        button.onmouseleave = function () {
             style.cursor = 'unset'
             style.color = 'white'
             style.backgroundColor = '#ff5544'
