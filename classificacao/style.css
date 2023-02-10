@@ -48,7 +48,7 @@ header h1 {
 
 /* ---------------------card----------------------- */
 
-.card {
+/* .card {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,26 +61,26 @@ header h1 {
   background-color: inherit;
 
   margin-bottom: -1px;
-}
+} */
 
-.card:hover {
+/* .card:hover {
   background-color: #fa922298;
   cursor: pointer;
 
   width: calc(80vw + 5px);
-}
+} */
 
-.card>div {
+/* .card>div {
   display: flex;
-}
+} */
 
-.card>div,
+/* .card>div,
 .card>p,
 .card>a {
   margin-left: 15px;
   margin-right: 15px;
-}
-
+} */
+/* 
 .usuario {
   flex: 1;
 }
@@ -120,7 +120,7 @@ header h1 {
 
 .a_revisar {
   border: 1px solid rgb(255, 94, 0);
-}
+} */
 
 
 /* ---------------------body----------------------- */

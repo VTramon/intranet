@@ -25,10 +25,10 @@ export function servicoCard(data) {
     texto.innerHTML = data['Textorequisicao']
 
     var statusContainer = document.createElement('div')
-    statusContainer.className = 'status_container'
+    statusContainer.className = 'status_container ' + handleStatusClass(data['Status'])
 
-    var statusClass = document.createElement('div')
-    statusClass.className = handleStatusClass(data['Status'])
+    // var statusClass = document.createElement('div')
+    // statusClass.className = handleStatusClass(data['Status'])
 
     var status = document.createElement('p')
     status.innerHTML = handleStatusSpan(data['Status'])
@@ -45,8 +45,81 @@ export function servicoCard(data) {
     card.insertAdjacentElement('beforeend', statusContainer)
     card.insertAdjacentElement('beforeend', time)
 
-    statusContainer.insertAdjacentElement('beforeend', statusClass)
-    statusClass.insertAdjacentElement('beforeend', status)
+    // statusContainer.insertAdjacentElement('beforeend', statusClass)
+    statusContainer.insertAdjacentElement('beforeend', status)
+
+    //////////////// card styles ////////////////
+
+    var styleC = card.style
+
+    styleC.display = 'flex'
+    styleC.justifyContent = 'space-between'
+    styleC.alignItems = 'center'
+    styleC.width = '80vw'
+    styleC.height = '60px'
+    styleC.border = '1px solid #004b9e'
+    styleC.borderRadius = '8px'
+    styleC.backgroundColor = 'inherit'
+    styleC.marginBottom = '-1px'
+
+    for (var i = 0; i < card.children.length; i++) {
+        card.children[i].style.margin = '0 15px'
+        card.children[i].style.display = 'flex'
+        card.children[i].style.flex = '1'
+    }
+
+    card.onmouseover = function () {
+        styleC.backgroundColor = '#fa922298'
+        styleC.cursor = 'pointer'
+        styleC.width = 'calc(80vw + 5px)'
+    }
+    card.onmouseleave = function () {
+        styleC.backgroundColor = 'unset'
+        styleC.cursor = 'unset'
+        styleC.width = '80vw'
+    }
+
+
+    //////////////// user styles ////////////////
+
+
+    user.style.flex = '1'
+
+
+
+    var styleT = texto.style
+
+    styleT.flex = '3'
+    styleT.whiteSpace = 'nowrap'
+    styleT.textOverflow = 'ellipsis'
+    styleT.overflow = 'hidden'
+
+
+    //////////////// status styles ////////////////
+
+    var styleS = statusContainer.style
+
+    styleS.borderRadius = '8px'
+    styleS.padding = '5px'
+    styleS.flex = 'unset'
+
+    if (data['Status'] === 'A revisar') {
+        styleS.border = '1px solid rgb(255, 94, 0)'
+    }
+
+    if (data['Status'] === 'Revisado') {
+        styleS.border = '1px solid green'
+    }
+
+    if (data['Status'] === 'Concluido') {
+        styleS.border = '1px solid rgb(0, 89, 255)'
+    }
+
+
+    //////////////// date styles ////////////////
+
+    time.style.display = 'unset'
+    time.style.textAlign = 'center'
 
     return cardLink
 }
