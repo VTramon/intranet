@@ -37,102 +37,7 @@
         <img src="./public/images/tecal.png" alt="Logo Tecal" />
       </div>
 
-
-      <!-- <div class="issue_button_container">
-        <i class="fa-solid fa-headset"></i>
-
-        <p class="issue_button">Críticas & Sugestões</p>
-        Críticas & Sugestões
-      </div> -->
-
-      <nav id="buttons_nav">
-        <!-- <div class="button_container">
-          <div>
-            <i aria-hidden="true" class="fas fa-home"></i>
-
-            <a href="http://intranet/">Home</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-building"></i>
-            <a href="http://intranet/sobre-a-tecal/">Sobre a Tecal</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-globe"></i>
-
-            <a href="http://intranet/politicas-2/">Políticas</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-book-reader"></i>
-
-            <a href="http://intranet/procedimentos_01/">Procedimentos</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-clipboard-check"></i>
-
-            <a href="http://intranet/manuais/">Manuais</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-clipboard-list"></i>
-
-            <a href="http://intranet/formularios/">Formulários</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="far fa-address-book"></i>
-
-            <a href="http://intranet/contatos/">Contatos</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-birthday-cake"></i>
-
-            <a href="http://intranet/aniversarios/">Aniversários</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-exclamation-circle"></i>
-
-            <a href="http://intranet/leis-normas/">Leis & Normas</a>
-          </div>
-        </div>
-
-        <div class="button_container">
-          <div>
-            <i class="fas fa-hands-helping"></i>
-
-            <a href="http://intranet/convenios/">Convênios & Parcerias</a>
-          </div>
-        </div>
-
-        <div class="button_container current_page_button_container">
-          <div>
-            <i class="fab fa-servicestack"></i>
-
-            <a disabled href="_blank">Solicitação de Serviço</a>
-          </div>
-        </div> -->
-      </nav>
+      <nav id="buttons_nav"></nav>
     </nav>
 
     <main>
@@ -148,7 +53,7 @@
         <div class="input_container setor_container">
 
           <label for="setor">Setor de Destino</label>
-          <input autocomplete='off' role='combobox' list='' id='input' name='input'  />
+          <input autocomplete='off' role='combobox' list='' id='input' name='input' />
 
           <datalist id='datalist' role='listbox'>
             <option value="Administração">Administração</option>
@@ -175,7 +80,6 @@
           <input type="file" name="arquivo" id="arquivo" />
         </div>
 
-        <!-- <button id="submit_button">Enviar</button> -->
       </form>
     </main>
   </div>
@@ -197,9 +101,8 @@
       </p>
     </div>
   </footer>
-  
+
   <script type="module" src="./script.js"></script>
-  <!-- <script src="./form.js"></script> -->
 </body>
 
 </html>

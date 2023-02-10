@@ -35,9 +35,9 @@ require './connection.php';
 
 
 
-// $query = queryData('select * from Timagem');
+// $query = queryData('select * from Trequisicao');
 // $data = [];
-// while ($row = sqlsrv_fetch_array($query)) {
+// while ($row = sqlsrv_fetch_array($query, 2)) {
 //     array_push($data, $row);
 // }
 

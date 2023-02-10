@@ -21,13 +21,13 @@
     <ul id="dataList">
       <?php
       // date_default_timezone_set('America/Sao_Paulo');
-      require "./script.php";
+      // require "./script.php";
 
-      printData();
+      // printData();
       ?>
     </ul>
   </main>
-  <script src="./script.js"></script>
+  <script type="module" src="./script.js"></script>
 </body>
 
 </html>

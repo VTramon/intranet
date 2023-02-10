@@ -53,15 +53,15 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
 <body>
   <header>
     <img src="../public/images/tecal.png" alt="">
-      <form id='conclude_form' action="./conclude.php" method="post">
-        <?php
-          if($usernameRegex && ($data['Status'] == 'A revisar' || $data['Status'] == 'Revisado')){
-            $html = new DOMDocument();
-            $html->loadHTML("<input id='conclude_hidden_id_input' type='hidden' name='id' value='$idRequisicao'>");
-            echo $html->saveHTML();
-          }
-        ?>
-      </form>
+    <form id='conclude_form' action="./conclude.php" method="post">
+      <?php
+      if ($usernameRegex && ($data['Status'] == 'A revisar' || $data['Status'] == 'Revisado')) {
+        $html = new DOMDocument();
+        $html->loadHTML("<input id='conclude_hidden_id_input' type='hidden' name='id' value='$idRequisicao'>");
+        echo $html->saveHTML();
+      }
+      ?>
+    </form>
   </header>
 
   <main>
@@ -69,7 +69,7 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
 
       <div class="image_container">
         <?php
-        if($data['Imagem']){
+        if ($data['Imagem']) {
 
           echo imgTemplate('/image/index.php?id=' . $data['Imagem']);
         }
@@ -96,59 +96,59 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
         </div>
 
         <?php
-          if ($data['Updatedat'] != null){
-            $html = new DOMDocument();
-            $html->loadHTML("
+        if ($data['Updatedat'] != null) {
+          $html = new DOMDocument();
+          $html->loadHTML("
             <div class='data_container updated_container'>
             <p class='data_label'>Atualizado:</p>
             <p class='data'> {$data['Updatedat']->format('d/m/Y H:i:s')} </p>
             </div>");
-            echo $html->saveHTML();
-          }
-          
-          if ($data['Completedat'] != null){
-            $html = new DOMDocument();
-            $html->loadHTML("
+          echo $html->saveHTML();
+        }
+
+        if ($data['Completedat'] != null) {
+          $html = new DOMDocument();
+          $html->loadHTML("
             <div class='data_container updated_container'>
             <p class='data_label'>Concluido:</p>
             <p class='data'> {$data['Completedat']->format('d/m/Y H:i:s')} </p>
             </div>");
-            echo $html->saveHTML();
-          }
+          echo $html->saveHTML();
+        }
         ?>
-        
+
         <div class="data_container texto_container">
           <p class="texto_label">Texto:</p>
           <p class="texto"><?php echo $data['Textorequisicao'] ?></p>
         </div>
 
       </div>
-      
+
       <form id='update_form' action='./submit.php' method='post'>
-      <?php
-      if ($data['Agrupamento'] == null && $editable == 'true') {
-        echo formTemplate($idRequisicao, true);
-      }
-      if ($data['Agrupamento'] == null && $editable == 'false') {
-        // Retorna nada
-      }
-      if ($data['Agrupamento'] != null && $editable == 'true') {
-        $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
-        
-        echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao'], $editable);
-      }
-      if ($data['Agrupamento'] != null && $editable == 'false') {
-        $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
-        
-        echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao']);
-      }
-      ?>
+        <?php
+        if ($data['Agrupamento'] == null && $editable == 'true') {
+          echo formTemplate($idRequisicao, true);
+        }
+        if ($data['Agrupamento'] == null && $editable == 'false') {
+          // Retorna nada
+        }
+        if ($data['Agrupamento'] != null && $editable == 'true') {
+          $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
+
+          echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao'], $editable);
+        }
+        if ($data['Agrupamento'] != null && $editable == 'false') {
+          $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
+
+          echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao']);
+        }
+        ?>
       </form>
     </section>
   </main>
 
   <footer></footer>
-  
+
   <script type="module" src="./script.js"></script>
 
 </body>

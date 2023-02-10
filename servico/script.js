@@ -8,8 +8,6 @@ if (document.getElementById('conclude_hidden_id_input') != null) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
 
-// setTimeout(() => {
-// }, 500);
 var hiddenButton = document.getElementById('hidden_id')
 if (hiddenButton) {
   hiddenButton.insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
@@ -143,12 +141,15 @@ if (input != null) {
 
 
 // ----------------------Finalizar Requisição----------------------//
+var concludeButton = document.getElementById('conclude_form_button')
 
-document.getElementById('conclude_form_button').addEventListener('click', (e) => {
-  e.preventDefault()
-  var r = confirm("Temcerteza de que deseja finalizar essa requisição?");
-  if (r == true) {
-    document.getElementById('conclude_form').submit()
-  }
-})
+if (concludeButton) {
+  concludeButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    var r = confirm("Temcerteza de que deseja finalizar essa requisição?");
+    if (r == true) {
+      document.getElementById('conclude_form').submit()
+    }
+  })
+}
 
