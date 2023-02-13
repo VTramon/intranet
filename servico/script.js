@@ -44,21 +44,60 @@ document.getElementById('setor').innerHTML = servicoData['Setor']
 document.getElementById('criado').innerHTML = new Date(servicoData['Createdat']['date']).toLocaleString()
 document.getElementById('texto_requisicao').innerHTML = servicoData['Textorequisicao']
 
+if (servicoData['Updatedat']) {
+  var container = document.createElement('div')
+  var text = document.createElement('p')
+
+  document.getElementById('created_container').insertAdjacentElement('afterend', container)
+
+  container.insertAdjacentElement('afterbegin', text)
+
+  container.className = 'data_container'
+  container.id = 'updated_container'
+
+  text.innerHTML = 'Atualizado: ' + new Date(servicoData['Updatedat']['date']).toLocaleString()
+}
+
+
+if (servicoData['Completedat']) {
+  var container = document.createElement('div')
+  var text = document.createElement('p')
+
+  document.getElementById('created_container').insertAdjacentElement('afterend', container)
+
+  container.insertAdjacentElement('afterbegin', text)
+
+  container.className = 'data_container'
+  container.id = 'completed_container'
+
+  text.innerHTML = 'Completo: ' + new Date(servicoData['Completedat']['date']).toLocaleString()
+}
+
+
+if (servicoData['Agrupamento']) {
+  document.getElementById('input').value = servicoData['Agrupamento']
+}
+
+if (servicoData['Textoconclusao']) {
+  document.getElementById('texto').innerHTML = servicoData['Textoconclusao']
+}
 
 
 
+// ----------------------Exibe o botões dos formulários----------------------//
 
 
+if (document.getElementById('conclude_hidden_id_input')) {
+  document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
+}
 
+if (document.getElementById('hidden_id')) {
+  document.getElementById('hidden_id').insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
+}
 
-// if (document.getElementById('conclude_hidden_id_input') != null) {
-//   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
-// }
-
-// var hiddenButton = document.getElementById('hidden_id')
-// if (hiddenButton) {
-//   hiddenButton.insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
-// }
+if (document.getElementById('hidden_editable')) {
+  document.getElementById('enviar').disabled = true
+}
 
 
 
