@@ -32,11 +32,7 @@ function getAllRequisicao()
 function getRequisicaoById($id)
 {
     $query = sqlsrv_query($GLOBALS['connect'], "select * from Trequisicao where Idrequisicao='$id'") or die(print_r(sqlsrv_errors(), true));
-    $data = [];
-    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
-        array_push($data, $row);
-    }
-    return $data;
+    return sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
 }
 
 

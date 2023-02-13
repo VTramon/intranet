@@ -1,5 +1,30 @@
 <?php
 
+require '../connection.php';
+
+
+// $id = $_GET['id'];
+
+$data = [];
+
+if (isset($_GET['id'])) {
+  $data = getRequisicaoById($_GET['id']);
+
+  echo json_encode($data);
+}
+
+
+// $img = $_GET['img'];
+
+if (isset($_GET['img'])) {
+  $data = getImageById($_GET['img']);
+
+  echo json_encode($data);
+}
+
+
+
+
 function formTemplate($id, $isDisabled = false, $agrupamento = '', $texto = '', $editable = false)
 {
   $result = new DOMDocument('1.0', 'UTF-8');

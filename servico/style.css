@@ -106,7 +106,7 @@
 /* } */
 
 
-*{
+* {
   padding: 0;
   margin: 0;
   border: 0;
@@ -116,7 +116,7 @@
 /* ---------------------main--------------------- */
 
 
-header{
+header {
   display: flex;
 
   height: 8vh;
@@ -125,18 +125,15 @@ header{
   justify-content: space-between;
 
   padding: 0 50px;
-  margin: 16px 0 50px 0 ;
+  margin: 16px 0 50px 0;
 }
 
-header > form{
+header>form {
   flex: 1;
   display: flex;
   align-items: flex-end;
 
 }
-
-
-
 
 
 
@@ -150,17 +147,17 @@ main {
   margin-bottom: 150px;
 }
 
-.image_container img {
+#image_container img {
   object-fit: contain;
   max-height: 500px;
   box-shadow: 0 0 15px gray;
   border-radius: 15px;
 }
+
 /* ---------------------section--------------------- */
 
 section {
   width: 80vw;
-  /* background-color: aqua; */
 
   display: flex;
   flex-direction: column;
@@ -333,7 +330,7 @@ option:hover,
 
 /* ----------------edit_button---------------- */
 
-#edit_button{
+#edit_button {
   position: absolute;
 
   right: 0px;

@@ -3,6 +3,42 @@
 
 import { handleButton } from '../components/button.js'
 
+const servicoId = window.location.href.split('id=')[1]
+
+
+// ----------------------Pega todos os dados do BD----------------------//
+
+
+async function getServicoData() {
+  return await fetch('./script.php?id=' + servicoId).then((res) => res.json())
+}
+
+async function getImagem() {
+  return await fetch('./script.php?id=' + servicoData['Imagem'])
+}
+
+
+const servicoData = await getServicoData()
+
+
+
+// ----------------------Exibi a imagem do serviço----------------------//
+
+var imgContainer = document.getElementById('image_container')
+if (servicoData['Imagem'] != null) {
+  var imagem = document.createElement('img')
+  imagem.src = '/image/index.php?id=' + servicoData['Imagem']
+  imagem.alt = 'imagem da requisição'
+
+  imgContainer.insertAdjacentElement('afterbegin', imagem)
+}
+
+
+
+
+// ----------------------Exibi a imagem do serviço----------------------//
+
+
 
 if (document.getElementById('conclude_hidden_id_input') != null) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
@@ -12,6 +48,7 @@ var hiddenButton = document.getElementById('hidden_id')
 if (hiddenButton) {
   hiddenButton.insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
 }
+
 
 
 // ----------------------Habilitar/desabilitar----------------------//

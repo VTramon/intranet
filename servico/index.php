@@ -1,7 +1,7 @@
 <?php
 
-require '../connection.php';
-require './script.php';
+// require '../connection.php';
+// require './script.php';
 error_reporting(E_ERROR | E_PARSE);
 
 
@@ -19,13 +19,13 @@ if ($usernameRegex) {
   $editable = 'true';
 }
 
-$data = getRequisicaoById($idRequisicao)[0];
+// $data = getRequisicaoById($idRequisicao)[0];
 
 // echo json_encode($data);
 
-date_timezone_set($data['Createdat'], timezone_open('America/Sao_Paulo'));
+// date_timezone_set($data['Createdat'], timezone_open('America/Sao_Paulo'));
 
-$date = $data['Createdat']->format('d/m/Y H:i:s');
+// $date = $data['Createdat']->format('d/m/Y H:i:s');
 // date_default_timezone_set('America/Sao_Paulo');
 
 
@@ -67,12 +67,12 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
   <main>
     <section>
 
-      <div class="image_container">
+      <div id="image_container">
         <?php
-        if ($data['Imagem']) {
+        // if ($data['Imagem']) {
 
-          echo imgTemplate('/image/index.php?id=' . $data['Imagem']);
-        }
+        //   echo imgTemplate('/image/index.php?id=' . $data['Imagem']);
+        // }
         ?>
 
         <!-- <a id="prev" class="prev" onclick="plusSlides(1)">&#10094;</a>
@@ -82,66 +82,66 @@ $date = $data['Createdat']->format('d/m/Y H:i:s');
       <div class="service_details">
         <div class="data_container usuario_container">
           <p class="usuario_label">Usuário:</p>
-          <p class="usuario"><?php echo $data['Usuario'] ?></p>
+          <p class="usuario"></p>
         </div>
 
         <div class="data_container setor_container">
           <p class="setor_label">Setor:</p>
-          <p class="setor"><?php echo $data['Setor'] ?></p>
+          <p class="setor"></p>
         </div>
 
         <div class="data_container created_container">
           <p class="data_label">Criado:</p>
-          <p class="data"><?php echo $date ?></p>
+          <p class="data"></p>
         </div>
 
         <?php
-        if ($data['Updatedat'] != null) {
-          $html = new DOMDocument();
-          $html->loadHTML("
-            <div class='data_container updated_container'>
-            <p class='data_label'>Atualizado:</p>
-            <p class='data'> {$data['Updatedat']->format('d/m/Y H:i:s')} </p>
-            </div>");
-          echo $html->saveHTML();
-        }
+        // if ($data['Updatedat'] != null) {
+        //   $html = new DOMDocument();
+        //   $html->loadHTML("
+        //     <div class='data_container updated_container'>
+        //     <p class='data_label'>Atualizado:</p>
+        //     <p class='data'> {$data['Updatedat']->format('d/m/Y H:i:s')} </p>
+        //     </div>");
+        //   echo $html->saveHTML();
+        // }
 
-        if ($data['Completedat'] != null) {
-          $html = new DOMDocument();
-          $html->loadHTML("
-            <div class='data_container updated_container'>
-            <p class='data_label'>Concluido:</p>
-            <p class='data'> {$data['Completedat']->format('d/m/Y H:i:s')} </p>
-            </div>");
-          echo $html->saveHTML();
-        }
+        // if ($data['Completedat'] != null) {
+        //   $html = new DOMDocument();
+        //   $html->loadHTML("
+        //     <div class='data_container updated_container'>
+        //     <p class='data_label'>Concluido:</p>
+        //     <p class='data'> {$data['Completedat']->format('d/m/Y H:i:s')} </p>
+        //     </div>");
+        //   echo $html->saveHTML();
+        // }
         ?>
 
         <div class="data_container texto_container">
           <p class="texto_label">Texto:</p>
-          <p class="texto"><?php echo $data['Textorequisicao'] ?></p>
+          <p class="texto"></p>
         </div>
 
       </div>
 
       <form id='update_form' action='./submit.php' method='post'>
         <?php
-        if ($data['Agrupamento'] == null && $editable == 'true') {
-          echo formTemplate($idRequisicao, true);
-        }
-        if ($data['Agrupamento'] == null && $editable == 'false') {
-          // Retorna nada
-        }
-        if ($data['Agrupamento'] != null && $editable == 'true') {
-          $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
+        // if ($data['Agrupamento'] == null && $editable == 'true') {
+        //   echo formTemplate($idRequisicao, true);
+        // }
+        // if ($data['Agrupamento'] == null && $editable == 'false') {
+        //   // Retorna nada
+        // }
+        // if ($data['Agrupamento'] != null && $editable == 'true') {
+        //   $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
 
-          echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao'], $editable);
-        }
-        if ($data['Agrupamento'] != null && $editable == 'false') {
-          $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
+        //   echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao'], $editable);
+        // }
+        // if ($data['Agrupamento'] != null && $editable == 'false') {
+        //   $agrupamento = getAgrupamentoById($data['Agrupamento'])['Tipoagrupamento'];
 
-          echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao']);
-        }
+        //   echo formTemplate($idRequisicao, false, $agrupamento, $data['Textoconclusao']);
+        // }
         ?>
       </form>
     </section>
