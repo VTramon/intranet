@@ -82,17 +82,17 @@ if ($usernameRegex) {
       <div class="service_details">
         <div class="data_container usuario_container">
           <p class="usuario_label">Usuário:</p>
-          <p class="usuario"></p>
+          <p id="usuario"></p>
         </div>
 
         <div class="data_container setor_container">
           <p class="setor_label">Setor:</p>
-          <p class="setor"></p>
+          <p id="setor"></p>
         </div>
 
         <div class="data_container created_container">
           <p class="data_label">Criado:</p>
-          <p class="data"></p>
+          <p id="criado"></p>
         </div>
 
         <?php
@@ -119,7 +119,7 @@ if ($usernameRegex) {
 
         <div class="data_container texto_container">
           <p class="texto_label">Texto:</p>
-          <p class="texto"></p>
+          <p id="texto_requisicao"></p>
         </div>
 
       </div>

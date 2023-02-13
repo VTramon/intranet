@@ -13,9 +13,6 @@ async function getServicoData() {
   return await fetch('./script.php?id=' + servicoId).then((res) => res.json())
 }
 
-async function getImagem() {
-  return await fetch('./script.php?id=' + servicoData['Imagem'])
-}
 
 
 const servicoData = await getServicoData()
@@ -25,7 +22,8 @@ const servicoData = await getServicoData()
 // ----------------------Exibi a imagem do serviço----------------------//
 
 var imgContainer = document.getElementById('image_container')
-if (servicoData['Imagem'] != null) {
+console.log(servicoData)
+if (servicoData['Imagem']) {
   var imagem = document.createElement('img')
   imagem.src = '/image/index.php?id=' + servicoData['Imagem']
   imagem.alt = 'imagem da requisição'
@@ -36,18 +34,31 @@ if (servicoData['Imagem'] != null) {
 
 
 
-// ----------------------Exibi a imagem do serviço----------------------//
+// ----------------------Exibi dados da requisição----------------------//
 
 
 
-if (document.getElementById('conclude_hidden_id_input') != null) {
-  document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
-}
 
-var hiddenButton = document.getElementById('hidden_id')
-if (hiddenButton) {
-  hiddenButton.insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
-}
+document.getElementById('usuario').innerHTML = servicoData['Usuario']
+document.getElementById('setor').innerHTML = servicoData['Setor']
+document.getElementById('criado').innerHTML = new Date(servicoData['Createdat']['date']).toLocaleString()
+document.getElementById('texto_requisicao').innerHTML = servicoData['Textorequisicao']
+
+
+
+
+
+
+
+
+// if (document.getElementById('conclude_hidden_id_input') != null) {
+//   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
+// }
+
+// var hiddenButton = document.getElementById('hidden_id')
+// if (hiddenButton) {
+//   hiddenButton.insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
+// }
 
 
 
