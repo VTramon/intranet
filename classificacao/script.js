@@ -2,7 +2,7 @@ import { servicoCard } from "../components/servicoCard.js"
 
 
 async function getData() {
-    return await fetch('/classificacao/server.php').
+    return await fetch('/server/servico/all').
         then((res) => res.json())
 
 }
@@ -14,7 +14,7 @@ async function printData() {
 
     // console.log(data[0])
     for (var index = 0; index < data.length; index++) {
-        console.log(data[index])
+        // console.log(data[index])
         list.insertAdjacentElement('beforeend', servicoCard(data[index]))
     }
 

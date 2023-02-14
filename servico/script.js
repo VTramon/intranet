@@ -10,7 +10,7 @@ const servicoId = window.location.href.split('id=')[1]
 
 
 async function getServicoData() {
-  return await fetch('./script.php?id=' + servicoId).then((res) => res.json())
+  return await fetch('/server/servico?id=' + servicoId).then((res) => res.json())
 }
 
 
@@ -25,7 +25,7 @@ var imgContainer = document.getElementById('image_container')
 // console.log(servicoData)
 if (servicoData['Imagem']) {
   var imagem = document.createElement('img')
-  imagem.src = '/image/index.php?id=' + servicoData['Imagem']
+  imagem.src = '/server/imagem?id=' + servicoData['Imagem']
   imagem.alt = 'imagem da requisição'
 
   imgContainer.insertAdjacentElement('afterbegin', imagem)

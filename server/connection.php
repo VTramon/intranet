@@ -1,5 +1,5 @@
 <?php
-$env = parse_ini_file('.env');
+$env = parse_ini_file('../.env');
 
 $connection = [
     'Uid' => $env['user'],

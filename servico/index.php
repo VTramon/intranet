@@ -107,11 +107,11 @@ function isDisabled($value)
     <img src="../public/images/tecal.png" alt="">
     <form id='conclude_form' action="./conclude.php" method="post">
       <?php
-      if ($usernameRegex && ($data['Status'] == 'A revisar' || $data['Status'] == 'Revisado')) {
-        $html = new DOMDocument();
-        $html->loadHTML("<input id='conclude_hidden_id_input' type='hidden' name='id' value='$idRequisicao'>");
-        echo $html->saveHTML();
-      }
+      // if ($usernameRegex && ($data['Status'] == 'A revisar' || $data['Status'] == 'Revisado')) {
+      $html = new DOMDocument();
+      $html->loadHTML("<input id='conclude_hidden_id_input' type='hidden' name='id' value='$idRequisicao'>");
+      echo $html->saveHTML();
+      // }
       ?>
     </form>
   </header>
