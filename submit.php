@@ -67,9 +67,8 @@ if ($_FILES['arquivo']['error'] === 0) {
             VALUES ('$usuario', '$texto', '{$now->format('Y-d-m H:i:s')}', '$setor', '$idImagem', 'A revisar');");
     }
     lastPage();
-
-}else if ($_FILES['arquivo']['error'] === 4) {
-    $setor = $_POST['setor'];
+} else if ($_FILES['arquivo']['error'] === 4) {
+    $setor = $_POST['input'];
     $texto = $_POST['texto'];
     $usuario = $GLOBALS['username'];
     // $usuario = 'vitor.lemos';
@@ -81,12 +80,11 @@ if ($_FILES['arquivo']['error'] === 0) {
         VALUES ('$usuario', '$texto', '{$now->format('Y-d-m H:i:s')}', '$setor', 'A revisar');");
 
     lastPage();
-        
-}else if ($_FILES['arquivo']['error'] === 1 || $_FILES['arquivo']['error'] === 2) {
+} else if ($_FILES['arquivo']['error'] === 1 || $_FILES['arquivo']['error'] === 2) {
     echo 'O arquivo inserido excede o tamanho máximo de arquivo permitido';
-}else if ($_FILES['arquivo']['error'] === 3) {
+} else if ($_FILES['arquivo']['error'] === 3) {
     echo 'Ocorreu um erro durante o upload da imagem, por favor tente novamente.';
-}else{
+} else {
     echo 'Ocorreu um erro durante o upload da imagem, por favor tente novamente.';
     var_dump($_FILES['arquivo']);
 }

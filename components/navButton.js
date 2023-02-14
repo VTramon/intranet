@@ -63,14 +63,14 @@ export function handleNavButton(value, iconName, iconColor, current, href) {
 
         text.disabled = true
 
-        inStyle.width = '80%'
+        inStyle.width = '100%'
         inStyle.borderRadius = '0 25px 25px 0'
         inStyle.backgroundColor = '#54595f'
         inStyle.cursor = 'unset'
 
         text.style.color = 'white'
         text.style.cursor = 'default'
-        text.style.pointerEvents = 'none'
+        link.style.pointerEvents = 'none'
 
         inner.onmouseover = function () { }
         inner.onmouseleave = function () { }

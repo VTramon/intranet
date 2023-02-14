@@ -35,7 +35,7 @@ export function servicoCard(data) {
 
     var time = document.createElement('p')
     time.className = 'created_at'
-    time.innerHTML = handleTime(data['Createdat'])
+    time.innerHTML = handleTime(data['Createdat'].date)
 
     cardLink.insertAdjacentElement('afterbegin', card)
     card.insertAdjacentElement('beforeend', user)
@@ -129,9 +129,37 @@ function handleTime(date) {
     const now = new Date()
     const then = new Date(date)
 
-    console.log(then)
+    var diff = Math.abs(now - then)
 
-    return '0 min'
+    const sec = Math.floor(diff / (1000))
+    const min = Math.floor(diff / (1000 * 60))
+    const hour = Math.floor(diff / (1000 * 60 * 60))
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+    if (day == 1) {
+        return day + ' dia'
+    }
+
+    if (day > 1) {
+        return day + ' dias'
+    }
+
+    if (hour >= 1) {
+        return hour + ' H'
+    }
+
+    if (min >= 1) {
+        return min + ' min'
+    }
+
+    if (sec >= 1) {
+        return sec + ' sec'
+    }
+
+    // console.log(Math.floor(diff / (1000 * 60 * 60)))
+    // console.log(Math.floor(diff / (1000 * 60 * 60 * 24)))
+
+    return day + ' dia'
 }
 
 function handleStatusClass(status) {

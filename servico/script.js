@@ -22,7 +22,7 @@ const servicoData = await getServicoData()
 // ----------------------Exibi a imagem do serviço----------------------//
 
 var imgContainer = document.getElementById('image_container')
-console.log(servicoData)
+// console.log(servicoData)
 if (servicoData['Imagem']) {
   var imagem = document.createElement('img')
   imagem.src = '/image/index.php?id=' + servicoData['Imagem']
@@ -170,7 +170,7 @@ if (input != null) {
   var minFocus = 0
 
   datalist.onscroll = function () {
-    console.log(datalist.scrollTop)
+    // console.log(datalist.scrollTop)
   }
 
   input.onkeydown = function (e) {
