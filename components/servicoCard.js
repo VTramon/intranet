@@ -13,16 +13,16 @@ export function servicoCard(data) {
     user.className = 'usuario'
     user.innerHTML = data['Usuario']
 
-    var setor = document.createElement('p')
-    setor.id = 'setor'
-    setor.innerHTML = 'para: ' + data['Setor']
+    // var setor = document.createElement('p')
+    // setor.id = 'setor'
+    // setor.innerHTML = 'para: ' + data['Setor']
 
-    var setorContainer = document.createElement('div')
-    setorContainer.className = 'setor_container'
+    // var setorContainer = document.createElement('div')
+    // setorContainer.className = 'setor_container'
 
-    var texto = document.createElement('p')
-    texto.className = 'texto'
-    texto.innerHTML = data['Textorequisicao']
+    // var texto = document.createElement('p')
+    // texto.className = 'texto'
+    // texto.innerHTML = data['Textorequisicao']
 
     var statusContainer = document.createElement('div')
     statusContainer.className = 'status_container ' + handleStatusClass(data['Status'])
@@ -39,9 +39,9 @@ export function servicoCard(data) {
 
     cardLink.insertAdjacentElement('afterbegin', card)
     card.insertAdjacentElement('beforeend', user)
-    card.insertAdjacentElement('beforeend', setorContainer)
-    setorContainer.insertAdjacentElement('beforeend', setor)
-    card.insertAdjacentElement('beforeend', texto)
+    // card.insertAdjacentElement('beforeend', setorContainer)
+    // setorContainer.insertAdjacentElement('beforeend', setor)
+    // card.insertAdjacentElement('beforeend', texto)
     card.insertAdjacentElement('beforeend', statusContainer)
     card.insertAdjacentElement('beforeend', time)
 
@@ -50,12 +50,14 @@ export function servicoCard(data) {
 
     //////////////// card styles ////////////////
 
+    cardLink.style.width = '100%'
+
     var styleC = card.style
 
     styleC.display = 'flex'
     styleC.justifyContent = 'space-between'
     styleC.alignItems = 'center'
-    styleC.width = '80vw'
+    styleC.width = '100%'
     styleC.height = '60px'
     styleC.border = '1px solid #004b9e'
     styleC.borderRadius = '8px'
@@ -71,12 +73,12 @@ export function servicoCard(data) {
     card.onmouseover = function () {
         styleC.backgroundColor = '#fa922298'
         styleC.cursor = 'pointer'
-        styleC.width = 'calc(80vw + 5px)'
+        // styleC.width = 'calc(80vw + 5px)'
     }
     card.onmouseleave = function () {
         styleC.backgroundColor = 'unset'
         styleC.cursor = 'unset'
-        styleC.width = '80vw'
+        // styleC.width = '80vw'
     }
 
 
@@ -84,15 +86,17 @@ export function servicoCard(data) {
 
 
     user.style.flex = '1'
+    user.style.textAlign = 'center'
+    user.style.display = 'inline'
 
 
 
-    var styleT = texto.style
+    // var styleT = texto.style
 
-    styleT.flex = '3'
-    styleT.whiteSpace = 'nowrap'
-    styleT.textOverflow = 'ellipsis'
-    styleT.overflow = 'hidden'
+    // styleT.flex = '3'
+    // styleT.whiteSpace = 'nowrap'
+    // styleT.textOverflow = 'ellipsis'
+    // styleT.overflow = 'hidden'
 
 
     //////////////// status styles ////////////////

@@ -12,6 +12,12 @@ body {
   background-color: #f4f4f4;
 }
 
+main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 /* ---------------------header----------------------- */
 
 header {
@@ -42,9 +48,9 @@ header h1 {
   align-items: center;
 }
 
-#dataList>div {
+/* #dataList>div {
   margin-bottom: 50px;
-}
+} */
 
 /* ---------------------card----------------------- */
 

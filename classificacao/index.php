@@ -17,15 +17,9 @@
     <h1>Lista de Serviços</h1>
   </header>
 
-  <main>
-    <ul id="dataList">
-      <?php
-      // date_default_timezone_set('America/Sao_Paulo');
-      // require "./script.php";
-
-      // printData();
-      ?>
-    </ul>
+  <main id="main">
+    <!-- <ul id="dataList">
+    </ul> -->
   </main>
   <script type="module" src="./script.js"></script>
 </body>
