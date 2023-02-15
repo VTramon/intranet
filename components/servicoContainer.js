@@ -20,6 +20,8 @@ export function servicoContainer(name){
 
     
     conStyle.width = '40%'
+    conStyle.maxWidth = '500px'
+    conStyle.margin = '0 20px'
     conStyle.marginTop = '50px'
     conStyle.display = 'flex'
     conStyle.flexDirection = 'column'

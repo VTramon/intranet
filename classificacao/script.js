@@ -15,6 +15,7 @@ var data = {
     SESMET: Array()
 }
 
+
 async function getData() {
     const response = await fetch('/server/servico/all').then((res) => res.json())
 
@@ -30,12 +31,15 @@ async function printData() {
     // var data = await getData()
     var main= document.getElementById('main')
     for(const setor of Object.entries(data)){
-        main.insertAdjacentElement('beforeend', servicoContainer(setor[0]))
-        var containerList = document.getElementById(setor[0]+'ContainerList')
-        for (var index = 0; index < data[setor[0]].length; index++) {
-            // console.log(datasetor[0][index])
-            containerList.insertAdjacentElement('beforeend', servicoCard(data[setor[0]][index]))
+        if(data[setor[0]].length>0){
+            main.insertAdjacentElement('beforeend', servicoContainer(setor[0]))
+            var containerList = document.getElementById(setor[0]+'ContainerList')
+            
+            for (var index = 0; index < data[setor[0]].length; index++) {
+                containerList.insertAdjacentElement('beforeend', servicoCard(data[setor[0]][index]))
+            }
         }
+
     }
     // var lists = document.getElementsByClassName('dataList')
 
