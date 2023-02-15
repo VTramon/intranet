@@ -134,3 +134,37 @@ header h1 {
 /* .texto {
   background-color: white;
 } */
+
+
+
+/* .dataList ul::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+}
+
+.dataList ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.dataList ul::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.dataList ul::-webkit-scrollbar-track-piece{
+  background: transparent;
+} */
+
+
+.dataList ul::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dataList ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.dataList ul::-webkit-scrollbar-thumb {
+  background: gray;
+}

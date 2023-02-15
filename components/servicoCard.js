@@ -51,6 +51,7 @@ export function servicoCard(data) {
     //////////////// card styles ////////////////
 
     cardLink.style.width = '100%'
+    // cardLink.style.width = 'calc(100% + 1px)'
 
     var styleC = card.style
 
@@ -59,8 +60,10 @@ export function servicoCard(data) {
     styleC.alignItems = 'center'
     styleC.width = '100%'
     styleC.height = '60px'
+    // styleC.border = '1px solid #004b9e'
+    // styleC.borderRadius = '8px'
     styleC.border = '1px solid #004b9e'
-    styleC.borderRadius = '8px'
+    styleC.borderTop = 'none'
     styleC.backgroundColor = 'inherit'
     styleC.marginBottom = '-1px'
 

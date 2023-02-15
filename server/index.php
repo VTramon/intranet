@@ -26,7 +26,12 @@ function getRequisicaoService()
 
 function submitRequisicaoService()
 {
-    
+    // if success redirect to last page
+    function lastPage()
+    {
+        header('Location: /');
+    }
+
     if ($_FILES['arquivo']['error'] === 0) {
         $setor = $_POST['input'];
         $texto = $_POST['texto'];
@@ -60,12 +65,6 @@ function submitRequisicaoService()
     }
 
 
-    // if success redirect to last page
-    function lastPage()
-    {
-        header('Location: /');
-    }
-
 
     function handleImage($data, $now)
     {
@@ -94,7 +93,7 @@ function submitRequisicaoService()
 
 
 
-
+// echo json_encode($_SERVER);
 ///////////////////////////// Controller /////////////////////////////
 switch ($_SERVER['PATH_INFO']) {
     case '/servico/all':
