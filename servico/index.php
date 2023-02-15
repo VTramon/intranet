@@ -7,17 +7,17 @@ error_reporting(E_ERROR | E_PARSE);
 
 $idRequisicao = mb_split('id=', $_SERVER['REQUEST_URI'])[1] or header('location:/classificacao/index.php');
 // $editable = mb_split('editable=', $_SERVER['REQUEST_URI'])[1];
-$editable = false;
+// $editable = false;
 
 $fullUsername = shell_exec("wmic computersystem get username");
 // $test = mb_split('\\\\', $fullUsername);
 $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
-$usernameRegex = preg_match('(vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes)', $username);
+// $usernameRegex = preg_match('(vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes)', $username);
 
 
-if ($usernameRegex) {
-  $editable = true;
-}
+// if ($usernameRegex) {
+//   $editable = true;
+// }
 
 
 
@@ -105,14 +105,9 @@ function isDisabled($value)
 <body>
   <header>
     <img src="../public/images/tecal.png" alt="">
-    <form id='conclude_form' action="./conclude.php" method="post">
-      <?php
-      // if ($usernameRegex && ($data['Status'] == 'A revisar' || $data['Status'] == 'Revisado')) {
-      $html = new DOMDocument();
-      $html->loadHTML("<input id='conclude_hidden_id_input' type='hidden' name='id' value='$idRequisicao'>");
-      echo $html->saveHTML();
-      // }
-      ?>
+    <form id='conclude_form' action="/server/servico/conclude" method="post">
+      <input id="username_hidden_input" type="hidden" name="user" value="<?php echo $username ?>">
+      <input id='conclude_hidden_id_input' type='hidden' name='id' value='<?php echo $idRequisicao?>'>
     </form>
   </header>
 
@@ -149,18 +144,18 @@ function isDisabled($value)
 
       <form id='update_form' action='./submit.php' method='post'>
         <?php
-        if ($data['Agrupamento'] && $editable == true) {
-          echo formTemplate($idRequisicao, true);
-        }
-        if ($data['Agrupamento'] && $editable == false) {
-          // Retorna nada
-        }
-        if (!$data['Agrupamento'] && $editable == true) {
-          echo formTemplate($idRequisicao, false, $editable);
-        }
-        if (!$data['Agrupamento'] && $editable == false) {
-          echo formTemplate($idRequisicao, false);
-        }
+        // if ($data['Agrupamento'] && $editable == true) {
+        //   echo formTemplate($idRequisicao, true);
+        // }
+        // if ($data['Agrupamento'] && $editable == false) {
+        //   // Retorna nada
+        // }
+        // if (!$data['Agrupamento'] && $editable == true) {
+        //   echo formTemplate($idRequisicao, false, $editable);
+        // }
+        // if (!$data['Agrupamento'] && $editable == false) {
+        //   echo formTemplate($idRequisicao, false);
+        // }
         ?>
       </form>
     </section>

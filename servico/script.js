@@ -86,10 +86,17 @@ if (servicoData['Textoconclusao']) {
 
 // ----------------------Exibe o botões dos formulários----------------------//
 
+const hiddenUsername = document.getElementById('username_hidden_input')
+const regex = new RegExp('vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes')
 
-if (document.getElementById('conclude_hidden_id_input')) {
+if(regex.test(hiddenUsername.value) && (servicoData['Status'] == 'A revisar' || servicoData['Status'] == 'Revisado')){
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
+
+
+// if (document.getElementById('conclude_hidden_id_input')) {
+//   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
+// }
 
 if (document.getElementById('hidden_id')) {
   document.getElementById('hidden_id').insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
@@ -240,3 +247,12 @@ if (concludeButton) {
   })
 }
 
+// // ---------------------- Exibir "Finalizar Requisição" ----------------------//
+// const hiddenUsername = document.getElementById('usernameHiddenInput')
+// const regexp = 'vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes'
+
+// if(hiddenUsername.value.match(regexp) == '' && (servicoData[Status] == 'A revisar' || servicoData[Status] == 'Revisado')){
+//   var concInput = document.createElement('input')
+//   concInput.id = 
+//   document.getElementById('conclude_form').insertAdjacentElement('afterbegin', )
+// }
