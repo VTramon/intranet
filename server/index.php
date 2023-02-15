@@ -32,6 +32,25 @@ function submitRequisicaoService()
         header('Location: /');
     }
 
+    function handleImage($data, $now)
+    {
+        $type = $data['type'];
+        $size = $data['size'];
+        $tmpName = $data['tmp_name'];
+
+        $fp = fopen($tmpName, 'rb') or die('Não foi possivel abrir o arquivo: ' . $tmpName);
+        $imagem = fread($fp, $size) or die('Não foi possivel ler o arquivo: ' . $imagem);
+        fclose($fp);
+
+        $result = base64_encode($imagem);
+
+        $id = uniqid() . $now;
+
+        queryData("INSERT INTO Timagem(Idimagem, Dadoimagem) VALUES('$id', '$result');");
+
+        return $id;
+    }
+
     if ($_FILES['arquivo']['error'] === 0) {
         $setor = $_POST['input'];
         $texto = $_POST['texto'];
@@ -63,28 +82,6 @@ function submitRequisicaoService()
         echo 'Ocorreu um erro durante o upload da imagem, por favor tente novamente.';
         var_dump($_FILES['arquivo']);
     }
-
-
-
-    function handleImage($data, $now)
-    {
-        $type = $data['type'];
-        $size = $data['size'];
-        $tmpName = $data['tmp_name'];
-
-        $fp = fopen($tmpName, 'rb') or die('Não foi possivel abrir o arquivo: ' . $tmpName);
-        $imagem = fread($fp, $size) or die('Não foi possivel ler o arquivo: ' . $imagem);
-        fclose($fp);
-
-        $result = base64_encode($imagem);
-
-        $id = uniqid() . $now;
-
-        queryData("INSERT INTO Timagem(Idimagem, Dadoimagem) VALUES('$id', '$result');");
-
-        return $id;
-    }
-
 }
 
 
@@ -110,20 +107,20 @@ switch ($_SERVER['PATH_INFO']) {
         $id = $_POST['id'];
         $now = new DateTime();
         $query = queryData("UPDATE Trequisicao SET Completedat='{$now->format('Y-d-m H:i:s')}', Status='Concluido' WHERE Idrequisicao='$id'");
-        if($query != false){
+        if ($query != false) {
             header("Location: /servico/index.php?id=$id");
         }
         break;
 
     case '/servico':
-        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             getRequisicaoService();
-        }else{
+        } else {
             submitRequisicaoService();
         }
         break;
 
-    
+
     default:
         // echo 'Status code: 400; ERROR MESSAGE: Bad request';
         http_response_code(400);

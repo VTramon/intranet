@@ -1,4 +1,5 @@
 
+var urgency = 'red'
 
 
 export function servicoCard(data) {
@@ -33,9 +34,11 @@ export function servicoCard(data) {
     var status = document.createElement('p')
     status.innerHTML = handleStatusSpan(data['Status'])
 
+    var timeContainer = document.createElement('div')
     var time = document.createElement('p')
     time.className = 'created_at'
-    time.innerHTML = handleTime(data['Createdat'].date)
+    const timeDiff = handleTime(data['Createdat'].date)
+    time.innerHTML = timeDiff
 
     cardLink.insertAdjacentElement('afterbegin', card)
     card.insertAdjacentElement('beforeend', user)
@@ -43,7 +46,8 @@ export function servicoCard(data) {
     // setorContainer.insertAdjacentElement('beforeend', setor)
     // card.insertAdjacentElement('beforeend', texto)
     card.insertAdjacentElement('beforeend', statusContainer)
-    card.insertAdjacentElement('beforeend', time)
+    card.insertAdjacentElement('beforeend', timeContainer)
+    timeContainer.insertAdjacentElement('beforeend', time)
 
     // statusContainer.insertAdjacentElement('beforeend', statusClass)
     statusContainer.insertAdjacentElement('beforeend', status)
@@ -125,6 +129,20 @@ export function servicoCard(data) {
 
     //////////////// date styles ////////////////
 
+    timeContainer.style.display = 'flex'
+    timeContainer.style.justifyContent = 'center'
+
+
+    time.style.backgroundColor = urgency
+    if (urgency == 'yellow') {
+        time.style.color = 'black'
+    } else {
+        time.style.color = 'white'
+    }
+    // time.style.backgroundColor = 'red'
+    time.style.padding = '8px'
+    time.style.borderRadius = '8px'
+    time.style.border = '1px solid rgb(255, 94, 0)'
     time.style.display = 'unset'
     time.style.textAlign = 'center'
 
@@ -144,15 +162,22 @@ function handleTime(date) {
     const day = Math.floor(diff / (1000 * 60 * 60 * 24))
 
     if (day == 1) {
+        urgency = 'red'
         return day + ' dia'
     }
 
     if (day > 1) {
+        urgency = 'black'
         return day + ' dias'
     }
 
     if (hour >= 1) {
+        urgency = 'yellow'
         return hour + ' H'
+    }
+
+    if (hour <= 1) {
+        urgency = 'green'
     }
 
     if (min >= 1) {

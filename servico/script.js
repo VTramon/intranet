@@ -2,6 +2,8 @@
 
 
 import { handleButton } from '../components/button.js'
+import { inputAgrupamento } from '../components/inputAgrupamento.js'
+import { textareaConclusao } from '../components/textareaConclusao.js'
 
 const servicoId = window.location.href.split('id=')[1]
 
@@ -73,13 +75,16 @@ if (servicoData['Completedat']) {
   text.innerHTML = 'Completo: ' + new Date(servicoData['Completedat']['date']).toLocaleString()
 }
 
+var input = document.getElementById('input')
+var texto = document.getElementById('texto')
 
-if (servicoData['Agrupamento']) {
-  document.getElementById('input').value = servicoData['Agrupamento']
+
+if (servicoData['Agrupamento'] && input != null) {
+  input.value = servicoData['Agrupamento']
 }
 
-if (servicoData['Textoconclusao']) {
-  document.getElementById('texto').innerHTML = servicoData['Textoconclusao']
+if (servicoData['Textoconclusao'] && texto != null) {
+  texto.innerHTML = servicoData['Textoconclusao']
 }
 
 
@@ -87,9 +92,9 @@ if (servicoData['Textoconclusao']) {
 // ----------------------Exibe o botões dos formulários----------------------//
 
 const hiddenUsername = document.getElementById('username_hidden_input')
-const regex = new RegExp('vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes')
+const regex = new RegExp('vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
 
-if(regex.test(hiddenUsername.value) && (servicoData['Status'] == 'A revisar' || servicoData['Status'] == 'Revisado')){
+if (regex && (servicoData['Status'] == 'A revisar' || servicoData['Status'] == 'Revisado')) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
 
@@ -98,9 +103,9 @@ if(regex.test(hiddenUsername.value) && (servicoData['Status'] == 'A revisar' || 
 //   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 // }
 
-if (document.getElementById('hidden_id')) {
-  document.getElementById('hidden_id').insertAdjacentElement('afterend', handleButton('enviar', 'Enviar', 'submit', false))
-}
+// if (document.getElementById('update_form')) {
+document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', false))
+// }
 
 if (document.getElementById('hidden_editable')) {
   document.getElementById('enviar').disabled = true
@@ -110,12 +115,14 @@ if (document.getElementById('hidden_editable')) {
 
 // ----------------------Habilitar/desabilitar----------------------//
 
+// as variáveis "input" e "texto" já foram declardas anteriormente //
+
+// var input = document.getElementById('input')
+// var texto = document.getElementById('texto')
 var button = document.getElementById('edit_button')
-var input = document.getElementById('input')
-var texto = document.getElementById('texto')
 var submitButton = document.getElementById('enviar')
 
-if (button != null && input != null) {
+if (button != null) {
   button.addEventListener('click', (e) => {
     e.preventDefault()
     if (button.innerHTML == 'Habilitar') {
@@ -134,7 +141,44 @@ if (button != null && input != null) {
 }
 
 
-// ----------------------Formulário----------------------//
+// ---------------------- Exibi Formulário ----------------------//
+
+const agrupamentos = ['Software', 'Hardware', 'RM', 'Operacional']
+
+// As variáveis "hiddenUsername" e "regex" já foram declaradas anteriormente //
+
+const updateForm = document.getElementById('update_form')
+if (servicoData['Agrupamento'] && regex) {
+  const activateButton = document.createElement('button')
+  activateButton.id = 'edit_button'
+  activateButton.innerHTML = 'Habilitar'
+
+  updateForm.insertAdjacentElement('afterbegin', activateButton)
+  updateForm.insertAdjacentElement('afterbegin', textareaConclusao(agrupamentos, false))
+  updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, false))
+}
+
+if (servicoData['Agrupamento'] && !regex) {
+  // updateForm.insertAdjacentElement('beforeend', imputAgrupamento(agrupamentos, false))
+}
+
+if (!servicoData['Agrupamento'] && regex) {
+  updateForm.insertAdjacentElement('afterbegin', textareaConclusao(agrupamentos, true))
+  updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, true))
+
+
+}
+
+if (!servicoData['Agrupamento'] && !regex) {
+  // retornar nada
+}
+
+
+
+
+
+// ---------------------- Script Formulário ----------------------//
+// A variável "input" já foi declarda anteriormente //
 
 var input = document.getElementById('input')
 
@@ -224,6 +268,7 @@ if (input != null) {
       datalist.scrollTo(0, (x.length - 1) * 32)
     }
     x[currentFocus].classList.add('active')
+    input.value = x[currentFocus].value
   }
 
   function removeActive(x) {
@@ -253,6 +298,6 @@ if (concludeButton) {
 
 // if(hiddenUsername.value.match(regexp) == '' && (servicoData[Status] == 'A revisar' || servicoData[Status] == 'Revisado')){
 //   var concInput = document.createElement('input')
-//   concInput.id = 
+//   concInput.id =
 //   document.getElementById('conclude_form').insertAdjacentElement('afterbegin', )
 // }

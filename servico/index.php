@@ -28,7 +28,8 @@ function formTemplate($id, $isDisabled = false, $editable = false)
   $result->encoding = 'UTF-8';
 
   $internalErrors = libxml_use_internal_errors(true);
-  $html = "<div class='input_container'>
+  $html = "
+    <div class='input_container'>
       <label for='input'>Agrupamento</label>
       <input value='' autocomplete='off' role='combobox' list='' id='input' name='input' " . isDisabled($isDisabled) . " />
 
@@ -107,7 +108,7 @@ function isDisabled($value)
     <img src="../public/images/tecal.png" alt="">
     <form id='conclude_form' action="/server/servico/conclude" method="post">
       <input id="username_hidden_input" type="hidden" name="user" value="<?php echo $username ?>">
-      <input id='conclude_hidden_id_input' type='hidden' name='id' value='<?php echo $idRequisicao?>'>
+      <input id='conclude_hidden_id_input' type='hidden' name='id' value='<?php echo $idRequisicao ?>'>
     </form>
   </header>
 
