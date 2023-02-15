@@ -7,7 +7,6 @@ $connection = [
     'Database' => $env['DB']
 ];
 
-
 $connect = sqlsrv_connect($env['server'], $connection) or die(print_r(sqlsrv_errors(), true));
 
 function queryData($text)
