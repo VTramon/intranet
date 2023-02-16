@@ -14,7 +14,18 @@ const servicoId = window.location.href.split('id=')[1]
 async function getServicoData() {
   return await fetch('/server/servico?id=' + servicoId).then((res) => res.json())
 }
-
+// console.log('ljhvljkh')
+async function getResponsavel(setor, user) {
+  var response = false
+  var data = await fetch('/server/responsaveis.php?setor=' + setor).then(res => res.json())
+  for (var i = 0; data.length; i++) {
+    if (data[i] == user) {
+      response = true
+      break
+    }
+  }
+  return response
+}
 
 
 const servicoData = await getServicoData()
@@ -92,11 +103,13 @@ if (servicoData['Textoconclusao'] && texto != null) {
 // ----------------------Exibe o botões dos formulários----------------------//
 
 const hiddenUsername = document.getElementById('username_hidden_input')
-const regex = new RegExp('vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
-
-if (regex && (servicoData['Status'] == 'A revisar' || servicoData['Status'] == 'Revisado')) {
-  document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
-}
+const regex = new RegExp('fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
+// console.log(servicoData['Setor'])
+console.log(await getResponsavel(servicoData['Setor'], hiddenUsername.value))
+// console.log(hiddenUsername.value)
+// if (getResponsavel(hiddenUsername.value) || (regex && (servicoData['Status'] == 'A revisar' || servicoData['Status'] == 'Revisado'))) {
+//   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
+// }
 
 
 // if (document.getElementById('conclude_hidden_id_input')) {
