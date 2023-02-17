@@ -4,6 +4,7 @@ $idRequisicao = mb_split('id=', $_SERVER['REQUEST_URI'])[1] or header('location:
 $fullUsername = shell_exec("wmic computersystem get username");
 $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,28 +33,7 @@ $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
         <a class="next" onclick="plusSlides(-1)">&#10095;</a> -->
       </div>
 
-      <div id="service_details">
-        <!-- <div class="data_container">
-          <p class="usuario_label">Usuário:</p>
-          <p id="usuario"></p>
-        </div>
-
-        <div class="data_container">
-          <p class="setor_label">Setor:</p>
-          <p id="setor"></p>
-        </div>
-
-        <div id='created_container' class="data_container">
-          <p class="data_label">Criado:</p>
-          <p id="criado"></p>
-        </div>
-
-        <div class="data_container">
-          <p class="texto_label">Texto:</p>
-          <p id="texto_requisicao"></p>
-        </div> -->
-
-      </div>
+      <div id="service_details"></div>
 
       <form id='update_form' action='/server/servico/update' method='post'>
 

@@ -1,4 +1,4 @@
-export function servicoContainer(name){
+export function servicoContainer(name) {
     var container = document.createElement('div')
     var containerList = document.createElement('ul')
     var label = document.createElement('div')
@@ -18,7 +18,7 @@ export function servicoContainer(name){
     var conLiStyle = containerList.style
     var conStyle = container.style
 
-    
+
     conStyle.width = '40%'
     conStyle.maxWidth = '500px'
     conStyle.margin = '0 20px'
@@ -27,7 +27,8 @@ export function servicoContainer(name){
     conStyle.flexDirection = 'column'
     conStyle.justifyContent = 'flex-start'
     conStyle.alignItems = 'flex-start'
-    conStyle.height = '70vh'
+    conStyle.maxHeight = '70vh'
+    conStyle.minHeight = '150px'
     // conStyle.borderBottom = '1px solid #fa922298'
     // conStyle.paddingRight = '-5px'
     // conStyle.overflowY = 'scroll'
@@ -42,7 +43,7 @@ export function servicoContainer(name){
     // conLiStyle.position = 'relative'
     // conLiStyle.marginRight = '-5px'
 
-    
+
     // conStyle.borderRadius = '8px 8px 0 0'
     // conStyle.borderBottom = '1px solid gray'
 

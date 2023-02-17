@@ -70,29 +70,21 @@ document.getElementById('setor').innerHTML = servicoData['Setor']
 document.getElementById('criado').innerHTML = new Date(servicoData['Createdat']['date']).toLocaleString()
 document.getElementById('texto_requisicao').innerHTML = servicoData['Textorequisicao']
 
-if (servicoData['Updatedat']) {
-  var container = document.createElement('div')
-  var text = document.createElement('p')
 
+if (servicoData['Completedat']) {
+
+  document.getElementById('created_container').insertAdjacentElement('afterend', servicoDetailCard('Concluido', 'concluido'))
+
+  document.getElementById('concluido').innerHTML = new Date(servicoData['Completedat']['date']).toLocaleString()
+}
+
+if (servicoData['Updatedat']) {
   document.getElementById('created_container').insertAdjacentElement('afterend', servicoDetailCard('Atualizado', 'atualizado'))
 
   document.getElementById('atualizado').innerHTML = new Date(servicoData['Updatedat']['date']).toLocaleString()
 }
 
 
-if (servicoData['Completedat']) {
-  var container = document.createElement('div')
-  var text = document.createElement('p')
-
-  document.getElementById('created_container').insertAdjacentElement('afterend', container)
-
-  container.insertAdjacentElement('afterbegin', text)
-
-  container.className = 'data_container'
-  container.id = 'completed_container'
-
-  text.innerHTML = 'Completo: ' + new Date(servicoData['Completedat']['date']).toLocaleString()
-}
 
 var input = document.getElementById('input')
 var texto = document.getElementById('texto_requisicao')
@@ -112,8 +104,8 @@ if (servicoData['Textoconclusao'] && texto != null) {
 // ----------------------Exibe o botões dos formulários----------------------//
 
 const hiddenUsername = document.getElementById('username_hidden_input')
-const regex = new RegExp('vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
-
+const regex = new RegExp('fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
+// vitor|vitor\\.lemos|
 if ((getResponsavel(hiddenUsername.value) && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
@@ -156,7 +148,10 @@ if (servicoData['Agrupamento'] && regex) {
 }
 
 if (servicoData['Agrupamento'] && !regex) {
-  // updateForm.insertAdjacentElement('beforeend', imputAgrupamento(agrupamentos, false))
+  var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
+
+  document.getElementById('service_details').insertAdjacentElement('beforeend', servicoDetailCard('Agrupamento', 'agrupamento', agrupamento))
+  document.getElementById('service_details').insertAdjacentElement('beforeend', servicoDetailCard('Conclusão', 'conclusao', servicoData['Textoconclusao']))
 }
 
 if (!servicoData['Agrupamento'] && regex) {
@@ -171,6 +166,10 @@ if (!servicoData['Agrupamento'] && !regex) {
 }
 
 
+// if (servicoData['Completedat'] && !regex) {
+//   document.getElementById('edit_button').style.visibility = 'hidden'
+//   document.getElementById('enviar').style.visibility = 'hidden'
+// }
 
 
 
