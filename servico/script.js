@@ -4,6 +4,7 @@
 import { handleButton } from '../components/button.js'
 import { inputAgrupamento } from '../components/inputAgrupamento.js'
 import { textareaConclusao } from '../components/textareaConclusao.js'
+import { servicoDetailCard } from '../components/servicoDetailCard.js'
 
 const servicoId = window.location.href.split('id=')[1]
 
@@ -48,29 +49,34 @@ if (servicoData['Imagem']) {
 
 
 
+// ----------------------Insere cards da requisicao----------------------//
+
+const details = [['usuario', 'Usuário'], ['setor', 'Setor'], ['criado', 'Criado'], ['texto_requisicao', 'Texto']]
+
+var detailsContainer = document.getElementById('service_details')
+
+for (var i = 0; i < details.length; i++) {
+  detailsContainer.insertAdjacentElement('beforeend', servicoDetailCard(details[i][1], details[i][0]))
+}
+
+
+
+
 // ----------------------Exibi dados da requisição----------------------//
-
-
 
 
 document.getElementById('usuario').innerHTML = servicoData['Usuario']
 document.getElementById('setor').innerHTML = servicoData['Setor']
 document.getElementById('criado').innerHTML = new Date(servicoData['Createdat']['date']).toLocaleString()
-// console.log(servicoData)
 document.getElementById('texto_requisicao').innerHTML = servicoData['Textorequisicao']
 
 if (servicoData['Updatedat']) {
   var container = document.createElement('div')
   var text = document.createElement('p')
 
-  document.getElementById('created_container').insertAdjacentElement('afterend', container)
+  document.getElementById('created_container').insertAdjacentElement('afterend', servicoDetailCard('Atualizado', 'atualizado'))
 
-  container.insertAdjacentElement('afterbegin', text)
-
-  container.className = 'data_container'
-  container.id = 'updated_container'
-
-  text.innerHTML = 'Atualizado: ' + new Date(servicoData['Updatedat']['date']).toLocaleString()
+  document.getElementById('atualizado').innerHTML = new Date(servicoData['Updatedat']['date']).toLocaleString()
 }
 
 
@@ -107,15 +113,10 @@ if (servicoData['Textoconclusao'] && texto != null) {
 
 const hiddenUsername = document.getElementById('username_hidden_input')
 const regex = new RegExp('vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
-// console.log(servicoData['Setor'])
-// console.log(hiddenUsername.value)
-// console.log(servicoData['Setor'])
-// console.log(await getResponsavel(servicoData['Setor'], hiddenUsername.value))
-// console.log(hiddenUsername.value)
+
 if ((getResponsavel(hiddenUsername.value) && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
-
 
 // if (document.getElementById('conclude_hidden_id_input')) {
 //   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
@@ -147,7 +148,6 @@ if (servicoData['Agrupamento'] && regex) {
   // var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res=> res.json()).then(response => console.log(response))
   var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
 
-  console.log(servicoData)
   updateForm.insertAdjacentElement('afterbegin', activateButton)
   updateForm.insertAdjacentElement('afterbegin', textareaConclusao(true, servicoData['Textoconclusao']))
   updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, true, agrupamento))
@@ -160,7 +160,6 @@ if (servicoData['Agrupamento'] && !regex) {
 }
 
 if (!servicoData['Agrupamento'] && regex) {
-  // console.log('lblsbhljrbaljhravbgljhvbr')
   updateForm.insertAdjacentElement('afterbegin', textareaConclusao(false))
   updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, false))
 
