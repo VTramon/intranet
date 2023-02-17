@@ -19,7 +19,7 @@ function queryData($text)
 
 function getAllRequisicao()
 {
-    $query = sqlsrv_query($GLOBALS['connect'], "select * from Trequisicao where not Status='Concluido' order by Idrequisicao desc") or die(print_r(sqlsrv_errors(), true));
+    $query = sqlsrv_query($GLOBALS['connect'], "select * from Trequisicao where not Status='Concluido' order by Createdat") or die(print_r(sqlsrv_errors(), true));
     $data = [];
     while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
         array_push($data, $row);

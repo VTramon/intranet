@@ -143,21 +143,9 @@ function isDisabled($value)
 
       </div>
 
-      <form id='update_form' action='./submit.php' method='post'>
-        <?php
-        // if ($data['Agrupamento'] && $editable == true) {
-        //   echo formTemplate($idRequisicao, true);
-        // }
-        // if ($data['Agrupamento'] && $editable == false) {
-        //   // Retorna nada
-        // }
-        // if (!$data['Agrupamento'] && $editable == true) {
-        //   echo formTemplate($idRequisicao, false, $editable);
-        // }
-        // if (!$data['Agrupamento'] && $editable == false) {
-        //   echo formTemplate($idRequisicao, false);
-        // }
-        ?>
+      <form id='update_form' action='/server/servico/update' method='post'>
+        
+        <input id='conclude_hidden_id_input' type='hidden' name='id' value='<?php echo $idRequisicao ?>'>
       </form>
     </section>
   </main>

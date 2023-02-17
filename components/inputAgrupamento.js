@@ -2,7 +2,7 @@
 
 
 
-export function inputAgrupamento(options, isDisabled) {
+export function inputAgrupamento(options, isDisabled, value) {
     const inputContainer = document.createElement('div')
     const inputLabel = document.createElement('label')
     const input = document.createElement('input')
@@ -32,7 +32,8 @@ export function inputAgrupamento(options, isDisabled) {
     // input.list = 'li'
     input.id = 'input'
     input.name = 'input'
-    // input.disabled = false
+    input.disabled = isDisabled
+    input.value = value
 
     datalist.id = 'datalist'
     datalist.role = 'listbox'

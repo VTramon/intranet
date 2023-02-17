@@ -14,10 +14,10 @@ const servicoId = window.location.href.split('id=')[1]
 async function getServicoData() {
   return await fetch('/server/servico?id=' + servicoId).then((res) => res.json())
 }
-// console.log('ljhvljkh')
 async function getResponsavel(setor, user) {
   var response = false
   var data = await fetch('/server/responsaveis.php?setor=' + setor).then(res => res.json())
+  // console.log(data)
   for (var i = 0; data.length; i++) {
     if (data[i] == user) {
       response = true
@@ -55,6 +55,7 @@ if (servicoData['Imagem']) {
 document.getElementById('usuario').innerHTML = servicoData['Usuario']
 document.getElementById('setor').innerHTML = servicoData['Setor']
 document.getElementById('criado').innerHTML = new Date(servicoData['Createdat']['date']).toLocaleString()
+// console.log(servicoData)
 document.getElementById('texto_requisicao').innerHTML = servicoData['Textorequisicao']
 
 if (servicoData['Updatedat']) {
@@ -87,7 +88,8 @@ if (servicoData['Completedat']) {
 }
 
 var input = document.getElementById('input')
-var texto = document.getElementById('texto')
+var texto = document.getElementById('texto_requisicao')
+console.log(texto)
 
 
 if (servicoData['Agrupamento'] && input != null) {
@@ -95,7 +97,7 @@ if (servicoData['Agrupamento'] && input != null) {
 }
 
 if (servicoData['Textoconclusao'] && texto != null) {
-  texto.innerHTML = servicoData['Textoconclusao']
+  texto.innerHTML = servicoData['Textorequisicao']
 }
 
 
@@ -103,13 +105,15 @@ if (servicoData['Textoconclusao'] && texto != null) {
 // ----------------------Exibe o botões dos formulários----------------------//
 
 const hiddenUsername = document.getElementById('username_hidden_input')
-const regex = new RegExp('fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
+const regex = new RegExp('vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
 // console.log(servicoData['Setor'])
-console.log(await getResponsavel(servicoData['Setor'], hiddenUsername.value))
 // console.log(hiddenUsername.value)
-// if (getResponsavel(hiddenUsername.value) || (regex && (servicoData['Status'] == 'A revisar' || servicoData['Status'] == 'Revisado'))) {
-//   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
-// }
+// console.log(servicoData['Setor'])
+// console.log(await getResponsavel(servicoData['Setor'], hiddenUsername.value))
+// console.log(hiddenUsername.value)
+if ((getResponsavel(hiddenUsername.value)  && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
+  document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
+}
 
 
 // if (document.getElementById('conclude_hidden_id_input')) {
@@ -117,7 +121,6 @@ console.log(await getResponsavel(servicoData['Setor'], hiddenUsername.value))
 // }
 
 // if (document.getElementById('update_form')) {
-document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', false))
 // }
 
 if (document.getElementById('hidden_editable')) {
@@ -126,32 +129,6 @@ if (document.getElementById('hidden_editable')) {
 
 
 
-// ----------------------Habilitar/desabilitar----------------------//
-
-// as variáveis "input" e "texto" já foram declardas anteriormente //
-
-// var input = document.getElementById('input')
-// var texto = document.getElementById('texto')
-var button = document.getElementById('edit_button')
-var submitButton = document.getElementById('enviar')
-
-if (button != null) {
-  button.addEventListener('click', (e) => {
-    e.preventDefault()
-    if (button.innerHTML == 'Habilitar') {
-      button.innerHTML = 'Desabilitar'
-
-      input.disabled = false
-      texto.disabled = false
-      submitButton.disabled = false
-    } else {
-      button.innerHTML = 'Habilitar'
-      input.disabled = true
-      texto.disabled = true
-      submitButton.disabled = true
-    }
-  })
-}
 
 
 // ---------------------- Exibi Formulário ----------------------//
@@ -165,10 +142,15 @@ if (servicoData['Agrupamento'] && regex) {
   const activateButton = document.createElement('button')
   activateButton.id = 'edit_button'
   activateButton.innerHTML = 'Habilitar'
+// console.log(servicoData['Agrupamento'])
+  // var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res=> res.json()).then(response => console.log(response))
+  var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res=> res.json()).then(res => res['Tipoagrupamento'])
 
   updateForm.insertAdjacentElement('afterbegin', activateButton)
-  updateForm.insertAdjacentElement('afterbegin', textareaConclusao(agrupamentos, false))
-  updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, false))
+  updateForm.insertAdjacentElement('afterbegin', textareaConclusao(true, servicoData['Textoconclusao']))
+  updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, true, agrupamento))
+
+  document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', true))
 }
 
 if (servicoData['Agrupamento'] && !regex) {
@@ -179,7 +161,7 @@ if (!servicoData['Agrupamento'] && regex) {
   updateForm.insertAdjacentElement('afterbegin', textareaConclusao(agrupamentos, true))
   updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, true))
 
-
+  document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', false))
 }
 
 if (!servicoData['Agrupamento'] && !regex) {
@@ -314,3 +296,34 @@ if (concludeButton) {
 //   concInput.id =
 //   document.getElementById('conclude_form').insertAdjacentElement('afterbegin', )
 // }
+
+
+
+
+// ----------------------Habilitar/desabilitar----------------------//
+
+// as variáveis "input" e "texto" já foram declardas anteriormente //
+
+// var input = document.getElementById('input')
+var textoConclusao = document.getElementById('textoConclusao')
+var editButton = document.getElementById('edit_button')
+console.log(editButton)
+var submitButton = document.getElementById('enviar')
+
+if (editButton != null) {
+  editButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (editButton.innerHTML == 'Habilitar') {
+      editButton.innerHTML = 'Desabilitar'
+
+      input.disabled = false
+      textoConclusao.disabled = false
+      submitButton.disabled = false
+    } else {
+      editButton.innerHTML = 'Habilitar'
+      input.disabled = true
+      textoConclusao.disabled = true
+      submitButton.disabled = true
+    }
+  })
+}

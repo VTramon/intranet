@@ -258,7 +258,7 @@ form {
 /* --------------------------------------------   */
 
 #input,
-#texto {
+#textoConclusao {
   font-size: 18px;
   padding: 5px;
   outline: none;
@@ -274,7 +274,7 @@ form {
 }
 
 
-#texto {
+#textoConclusao {
   resize: none;
   width: 50%;
   height: 150px;

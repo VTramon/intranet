@@ -86,6 +86,26 @@ function submitRequisicaoService()
 
 
 
+function updateServico(){
+    $agrupamento = $_POST['input'];
+    $conclusao = $_POST['texto'];
+    $idRequisicao = $_POST['id'];
+    date_default_timezone_set('America/Sao_Paulo');
+
+    $now = new Datetime();
+    $idAgrupamento = uniqid() . $now->format('d-m-Y');
+
+    $qiery1 = queryData("INSERT INTO Tagrupamento(Idagrupamento, Tipoagrupamento) values('$idAgrupamento', '$agrupamento')");
+    $qiery2 = queryData("UPDATE Trequisicao SET Textoconclusao='$conclusao', Agrupamento='$idAgrupamento', Status='Revisado', Updatedat='{$now->format('Y-d-m H:i:s')}' WHERE Idrequisicao='$idRequisicao'");
+
+
+    if($qiery1 != null && $qiery2 != null){
+        header("Location: /servico/index.php?id=$idRequisicao");
+    }
+}
+
+
+
 
 
 
@@ -118,6 +138,14 @@ switch ($_SERVER['PATH_INFO']) {
         } else {
             submitRequisicaoService();
         }
+        break;
+        
+    case '/servico/update':
+        updateServico();
+        break;
+
+    case '/agrupamento':
+        echo json_encode(getAgrupamentoById($_GET['id']));
         break;
 
 
