@@ -1,9 +1,10 @@
 <?php
 
+$env = parse_ini_file('../.env');
 
 
-// $file = fopen('C:\Users\vitor.lemos\Documents\responsaveis.csv', 'r');
-$file = fopen('C:\Users\vitor\OneDrive\Documents\responsaveis.csv', 'r');
+$file = fopen($env['responsaveis'], 'r');
+// $file = fopen('C:\Users\vitor\OneDrive\Documents\responsaveis.csv', 'r');
 
 $setor = $_GET['setor'];
 
@@ -14,7 +15,7 @@ $num = 1;
 
 while (($data = fgetcsv($file, null, ';')) !== FALSE) {
     // echo json_encode(trim($data[0], "\xEF\xBB\xBF"));
-    
+
     if (trim($data[0], "\xEF\xBB\xBF") == $setor) {
         for ($i = 1; $i < count($data); $i++) {
             if ($data[$i] != '') {

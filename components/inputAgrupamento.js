@@ -2,7 +2,7 @@
 
 
 
-export function inputAgrupamento(options, isDisabled, value) {
+export function inputAgrupamento(options, isDisabled, value = '') {
     const inputContainer = document.createElement('div')
     const inputLabel = document.createElement('label')
     const input = document.createElement('input')

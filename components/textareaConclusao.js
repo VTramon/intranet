@@ -2,7 +2,7 @@
 
 
 
-export function textareaConclusao(isDisabled, value) {
+export function textareaConclusao(isDisabled, value = '') {
     const textContainer = document.createElement('div')
     const textLabel = document.createElement('label')
     const textarea = document.createElement('textarea')
@@ -19,6 +19,8 @@ export function textareaConclusao(isDisabled, value) {
     // textarea.type = 'text'
     textarea.name = 'texto'
     textarea.id = 'textoConclusao'
+
+    console.log(isDisabled)
 
     textarea.innerHTML = value
     textarea.disabled = isDisabled

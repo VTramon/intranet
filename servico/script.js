@@ -29,6 +29,7 @@ async function getResponsavel(setor, user) {
 
 
 const servicoData = await getServicoData()
+console.log(servicoData)
 
 
 
@@ -111,7 +112,7 @@ const regex = new RegExp('vitor|vitor\\.lemos|fasmj|francisco\\.junior|luccas\\.
 // console.log(servicoData['Setor'])
 // console.log(await getResponsavel(servicoData['Setor'], hiddenUsername.value))
 // console.log(hiddenUsername.value)
-if ((getResponsavel(hiddenUsername.value)  && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
+if ((getResponsavel(hiddenUsername.value) && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
 
@@ -142,10 +143,11 @@ if (servicoData['Agrupamento'] && regex) {
   const activateButton = document.createElement('button')
   activateButton.id = 'edit_button'
   activateButton.innerHTML = 'Habilitar'
-// console.log(servicoData['Agrupamento'])
+  // console.log(servicoData['Agrupamento'])
   // var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res=> res.json()).then(response => console.log(response))
-  var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res=> res.json()).then(res => res['Tipoagrupamento'])
+  var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
 
+  console.log(servicoData)
   updateForm.insertAdjacentElement('afterbegin', activateButton)
   updateForm.insertAdjacentElement('afterbegin', textareaConclusao(true, servicoData['Textoconclusao']))
   updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, true, agrupamento))
@@ -158,8 +160,9 @@ if (servicoData['Agrupamento'] && !regex) {
 }
 
 if (!servicoData['Agrupamento'] && regex) {
-  updateForm.insertAdjacentElement('afterbegin', textareaConclusao(agrupamentos, true))
-  updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, true))
+  // console.log('lblsbhljrbaljhravbgljhvbr')
+  updateForm.insertAdjacentElement('afterbegin', textareaConclusao(false))
+  updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, false))
 
   document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', false))
 }
