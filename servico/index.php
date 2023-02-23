@@ -2,6 +2,7 @@
 error_reporting(E_ERROR | E_PARSE);
 $idRequisicao = mb_split('id=', $_SERVER['REQUEST_URI'])[1] or header('location:/classificacao/index.php');
 $fullUsername = shell_exec("wmic computersystem get username");
+$testUsername = shell_exec("whoami");
 $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
 ?>
 

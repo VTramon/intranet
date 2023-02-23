@@ -15,11 +15,14 @@ const servicoId = window.location.href.split('id=')[1]
 async function getServicoData() {
   return await fetch('/server/servico?id=' + servicoId).then((res) => res.json())
 }
+
 async function getResponsavel(setor, user) {
+  // console.log("Setor: " + setor)
+  // console.log("User: " + user)
   var response = false
   var data = await fetch('/server/responsaveis.php?setor=' + setor).then(res => res.json())
-  // console.log(data)
   for (var i = 0; data.length; i++) {
+    // console.log(data[i] == user)
     if (data[i] == user) {
       response = true
       break
@@ -30,14 +33,13 @@ async function getResponsavel(setor, user) {
 
 
 const servicoData = await getServicoData()
-console.log(servicoData)
+// console.log(servicoData)
 
 
 
 // ----------------------Exibi a imagem do serviço----------------------//
 
 var imgContainer = document.getElementById('image_container')
-// console.log(servicoData)
 if (servicoData['Imagem']) {
   var imagem = document.createElement('img')
   imagem.src = '/server/imagem?id=' + servicoData['Imagem']
@@ -88,7 +90,7 @@ if (servicoData['Updatedat']) {
 
 var input = document.getElementById('input')
 var texto = document.getElementById('texto_requisicao')
-console.log(texto)
+// console.log(texto)
 
 
 if (servicoData['Agrupamento'] && input != null) {
@@ -104,18 +106,11 @@ if (servicoData['Textoconclusao'] && texto != null) {
 // ----------------------Exibe o botões dos formulários----------------------//
 
 const hiddenUsername = document.getElementById('username_hidden_input')
-const regex = new RegExp('fasmj|francisco\\.junior|luccas\\.moragas|rafael\\.moraes').test(hiddenUsername.value)
-// vitor|vitor\\.lemos|
-if ((getResponsavel(hiddenUsername.value) && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
+const regex = new RegExp('fasmj|francisco\\.junior|rafael\\.moraes').test(hiddenUsername.value)
+
+if ((await getResponsavel(servicoData['Setor'], hiddenUsername.value) && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
 }
-
-// if (document.getElementById('conclude_hidden_id_input')) {
-//   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
-// }
-
-// if (document.getElementById('update_form')) {
-// }
 
 if (document.getElementById('hidden_editable')) {
   document.getElementById('enviar').disabled = true
@@ -132,12 +127,11 @@ const agrupamentos = ['Software', 'Hardware', 'RM', 'Operacional']
 // As variáveis "hiddenUsername" e "regex" já foram declaradas anteriormente //
 
 const updateForm = document.getElementById('update_form')
-if (servicoData['Agrupamento'] && regex) {
+if (servicoData['Agrupamento'] && (regex || await getResponsavel(servicoData['Setor'], hiddenUsername.value))) {
   const activateButton = document.createElement('button')
   activateButton.id = 'edit_button'
   activateButton.innerHTML = 'Habilitar'
-  // console.log(servicoData['Agrupamento'])
-  // var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res=> res.json()).then(response => console.log(response))
+
   var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
 
   updateForm.insertAdjacentElement('afterbegin', activateButton)
@@ -147,34 +141,28 @@ if (servicoData['Agrupamento'] && regex) {
   document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', true))
 }
 
-if (servicoData['Agrupamento'] && !regex) {
+if (servicoData['Agrupamento'] && !(regex || await getResponsavel(servicoData['Setor'], hiddenUsername.value))) {
   var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
 
   document.getElementById('service_details').insertAdjacentElement('beforeend', servicoDetailCard('Agrupamento', 'agrupamento', agrupamento))
   document.getElementById('service_details').insertAdjacentElement('beforeend', servicoDetailCard('Conclusão', 'conclusao', servicoData['Textoconclusao']))
 }
 
-if (!servicoData['Agrupamento'] && regex) {
+if (!servicoData['Agrupamento'] && (regex || await getResponsavel(servicoData['Setor'], hiddenUsername.value))) {
   updateForm.insertAdjacentElement('afterbegin', textareaConclusao(false))
   updateForm.insertAdjacentElement('afterbegin', inputAgrupamento(agrupamentos, false))
 
   document.getElementById('update_form').insertAdjacentElement('beforeend', handleButton('enviar', 'Enviar', 'submit', false))
 }
 
-if (!servicoData['Agrupamento'] && !regex) {
+if (!servicoData['Agrupamento'] && !(regex || await getResponsavel(servicoData['Setor'], hiddenUsername.value))) {
   // retornar nada
 }
 
 
-// if (servicoData['Completedat'] && !regex) {
-//   document.getElementById('edit_button').style.visibility = 'hidden'
-//   document.getElementById('enviar').style.visibility = 'hidden'
-// }
-
 
 
 // ---------------------- Script Formulário ----------------------//
-// A variável "input" já foi declarda anteriormente //
 
 var input = document.getElementById('input')
 
@@ -308,7 +296,6 @@ if (concludeButton) {
 // var input = document.getElementById('input')
 var textoConclusao = document.getElementById('textoConclusao')
 var editButton = document.getElementById('edit_button')
-console.log(editButton)
 var submitButton = document.getElementById('enviar')
 
 if (editButton != null) {

@@ -16,11 +16,9 @@ export function textareaConclusao(isDisabled, value = '') {
     textLabel.htmlFor = 'texto'
     textLabel.innerHTML = 'Solução'
 
-    // textarea.type = 'text'
     textarea.name = 'texto'
     textarea.id = 'textoConclusao'
 
-    console.log(isDisabled)
 
     textarea.innerHTML = value
     textarea.disabled = isDisabled
