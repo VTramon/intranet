@@ -1,6 +1,7 @@
 <?php
 $env = parse_ini_file('../.env');
 
+
 $connection = [
     'Uid' => $env['user'],
     'PWD' => $env['password'],

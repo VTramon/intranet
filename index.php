@@ -49,7 +49,7 @@
         <h3>Formulário de Soliciatação</h3>
       </div>
 
-      <form id="form" method="post" enctype="multipart/form-data" action="./server/servico">
+      <form id="form" method="post" enctype="multipart/form-data" action="./server/index.php/servico">
         <div class="input_container setor_container">
 
           <label for="setor">Setor de Destino</label>

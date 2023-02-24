@@ -1,9 +1,8 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
 $idRequisicao = mb_split('id=', $_SERVER['REQUEST_URI'])[1] or header('location:/classificacao/index.php');
-$fullUsername = shell_exec("wmic computersystem get username");
-$testUsername = shell_exec("whoami");
-$username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
+$username = $_SERVER['LOGON_USER'];
+// echo $username;
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +19,7 @@ $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
 <body>
   <header>
     <img src="../public/images/tecal.png" alt="">
-    <form id='conclude_form' action="/server/servico/conclude" method="post">
+    <form id='conclude_form' action="/server/index.php/servico/conclude" method="post">
       <input id="username_hidden_input" type="hidden" name="user" value="<?php echo $username ?>">
       <input id='conclude_hidden_id_input' type='hidden' name='id' value='<?php echo $idRequisicao ?>'>
     </form>
@@ -36,7 +35,7 @@ $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
 
       <div id="service_details"></div>
 
-      <form id='update_form' action='/server/servico/update' method='post'>
+      <form id='update_form' action='/server/index.php/servico/update' method='post'>
 
         <input id='conclude_hidden_id_input' type='hidden' name='id' value='<?php echo $idRequisicao ?>'>
       </form>
@@ -45,7 +44,8 @@ $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
 
   <footer></footer>
 
-  <script type="module" src="./script.js"></script>
+  <script type="module" src="./script.js">
+  </script>
 
 </body>
 

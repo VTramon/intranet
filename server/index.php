@@ -1,12 +1,17 @@
 <?php
 require './connection.php';
 
-$fullUsername = shell_exec("wmic computersystem get username");
-$fullName = shell_exec("wmic computersystem get name");
+// $fullUsername = shell_exec("wmic computersystem get username");
+// $fullName = shell_exec("wmic computersystem get name");
 
-$username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
-$name = mb_split(' ', mb_split('\n', $fullName)[1])[0];
+// $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
+// $name = mb_split(' ', mb_split('\n', $fullName)[1])[0];
 
+// $username = shell_exec('whoami');
+// $name = shell_exec('hostname');
+
+$username = $_SERVER['LOGON_USER'];
+$name = $_SERVER['COMPUTERNAME'];
 
 function getRequisicaoService()
 {
@@ -86,7 +91,8 @@ function submitRequisicaoService()
 
 
 
-function updateServico(){
+function updateServico()
+{
     $agrupamento = $_POST['input'];
     $conclusao = $_POST['texto'];
     $idRequisicao = $_POST['id'];
@@ -99,7 +105,7 @@ function updateServico(){
     $qiery2 = queryData("UPDATE Trequisicao SET Textoconclusao='$conclusao', Agrupamento='$idAgrupamento', Status='Revisado', Updatedat='{$now->format('Y-d-m H:i:s')}' WHERE Idrequisicao='$idRequisicao'");
 
 
-    if($qiery1 != null && $qiery2 != null){
+    if ($qiery1 != null && $qiery2 != null) {
         header("Location: /servico/index.php?id=$idRequisicao");
     }
 }
@@ -139,7 +145,7 @@ switch ($_SERVER['PATH_INFO']) {
             submitRequisicaoService();
         }
         break;
-        
+
     case '/servico/update':
         updateServico();
         break;

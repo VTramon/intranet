@@ -13,7 +13,7 @@ const servicoId = window.location.href.split('id=')[1]
 
 
 async function getServicoData() {
-  return await fetch('/server/servico?id=' + servicoId).then((res) => res.json())
+  return await fetch('/server/index.php/servico?id=' + servicoId).then((res) => res.json())
 }
 
 async function getResponsavel(setor, user) {
@@ -42,7 +42,7 @@ const servicoData = await getServicoData()
 var imgContainer = document.getElementById('image_container')
 if (servicoData['Imagem']) {
   var imagem = document.createElement('img')
-  imagem.src = '/server/imagem?id=' + servicoData['Imagem']
+  imagem.src = '/server/index.php/imagem?id=' + servicoData['Imagem']
   imagem.alt = 'imagem da requisição'
 
   imgContainer.insertAdjacentElement('afterbegin', imagem)
@@ -106,7 +106,7 @@ if (servicoData['Textoconclusao'] && texto != null) {
 // ----------------------Exibe o botões dos formulários----------------------//
 
 const hiddenUsername = document.getElementById('username_hidden_input')
-const regex = new RegExp('fasmj|francisco\\.junior|rafael\\.moraes').test(hiddenUsername.value)
+const regex = new RegExp('vitor\\.lemos|fasmj|francisco\\.junior|rafael\\.moraes').test(hiddenUsername.value)
 
 if ((await getResponsavel(servicoData['Setor'], hiddenUsername.value) && servicoData['Status'] == 'Revisado') || (regex && servicoData['Status'] == 'Revisado')) {
   document.getElementById('conclude_form').appendChild(handleButton('conclude_form_button', 'Finalizar Requisição', 'submit', false))
@@ -132,7 +132,7 @@ if (servicoData['Agrupamento'] && (regex || await getResponsavel(servicoData['Se
   activateButton.id = 'edit_button'
   activateButton.innerHTML = 'Habilitar'
 
-  var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
+  var agrupamento = await fetch('/server/index.php/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
 
   updateForm.insertAdjacentElement('afterbegin', activateButton)
   updateForm.insertAdjacentElement('afterbegin', textareaConclusao(true, servicoData['Textoconclusao']))
@@ -142,7 +142,7 @@ if (servicoData['Agrupamento'] && (regex || await getResponsavel(servicoData['Se
 }
 
 if (servicoData['Agrupamento'] && !(regex || await getResponsavel(servicoData['Setor'], hiddenUsername.value))) {
-  var agrupamento = await fetch('/server/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
+  var agrupamento = await fetch('/server/index.php/agrupamento?id=' + servicoData['Agrupamento']).then(res => res.json()).then(res => res['Tipoagrupamento'])
 
   document.getElementById('service_details').insertAdjacentElement('beforeend', servicoDetailCard('Agrupamento', 'agrupamento', agrupamento))
   document.getElementById('service_details').insertAdjacentElement('beforeend', servicoDetailCard('Conclusão', 'conclusao', servicoData['Textoconclusao']))
