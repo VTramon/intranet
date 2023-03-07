@@ -1,16 +1,8 @@
 <?php
 require './connection.php';
 
-// $fullUsername = shell_exec("wmic computersystem get username");
-// $fullName = shell_exec("wmic computersystem get name");
 
-// $username = mb_split(' ', mb_split('\\\\', $fullUsername)[1])[0];
-// $name = mb_split(' ', mb_split('\n', $fullName)[1])[0];
-
-// $username = shell_exec('whoami');
-// $name = shell_exec('hostname');
-
-$username = $_SERVER['LOGON_USER'];
+$username = explode('\\', $_SERVER['LOGON_USER'])[1];
 $name = $_SERVER['COMPUTERNAME'];
 
 function getRequisicaoService()
@@ -62,6 +54,7 @@ function submitRequisicaoService()
         $usuario = $GLOBALS['username'];
         $now = new DateTime();
         $idImagem = handleImage($_FILES['arquivo'], $now->format('d-m-Y'));
+
         if ($idImagem > 0 && $idImagem != false) {
             $insertRequisicao = queryData("INSERT INTO Trequisicao(
                 Usuario, Textorequisicao, Createdat, Setor, Imagem, Status)
@@ -116,7 +109,6 @@ function updateServico()
 
 
 
-// echo json_encode($_SERVER);
 ///////////////////////////// Controller /////////////////////////////
 switch ($_SERVER['PATH_INFO']) {
     case '/servico/all':

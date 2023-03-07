@@ -16,7 +16,7 @@ $num = 1;
 while (($data = fgetcsv($file, null, ';')) !== FALSE) {
     // echo json_encode(trim($data[0], "\xEF\xBB\xBF"));
 
-    if (trim($data[0], "\xEF\xBB\xBF") == $setor) {
+    if (preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $data[0]) == $setor) {
         for ($i = 1; $i < count($data); $i++) {
             if ($data[$i] != '') {
                 array_push($responsaveis, $data[$i]);

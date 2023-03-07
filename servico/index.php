@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-$idRequisicao = mb_split('id=', $_SERVER['REQUEST_URI'])[1] or header('location:/classificacao/index.php');
-$username = $_SERVER['LOGON_USER'];
+$idRequisicao = explode('id=', $_SERVER['REQUEST_URI'])[1] or header('location:/classificacao/index.php');
+$username = explode('\\', $_SERVER['LOGON_USER'])[1];
 // echo $username;
 ?>
 
